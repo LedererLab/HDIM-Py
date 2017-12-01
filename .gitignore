@@ -1,0 +1,9 @@
+# Built objects
+*.o
+*.so
+
+# Python caches
+/hdim/__pycache__
+
+# Built files
+/build
