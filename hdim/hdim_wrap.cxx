@@ -4050,17 +4050,6 @@ SWIGINTERN PyObject *SolverType_screen_ista_swigconstant(PyObject *SWIGUNUSEDPAR
 }
 
 
-SWIGINTERN PyObject *SolverType_cl_ista_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *module;
-  PyObject *d;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigconstant", &module)) return NULL;
-  d = PyModule_GetDict(module);
-  if (!d) return NULL;
-  SWIG_Python_SetConstant(d, "SolverType_cl_ista",SWIG_From_int(static_cast< int >(hdim::SolverType::cl_ista)));
-  return SWIG_Py_Void();
-}
-
-
 SWIGINTERN PyObject *SolverType_fista_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *module;
   PyObject *d;
@@ -4079,17 +4068,6 @@ SWIGINTERN PyObject *SolverType_screen_fista_swigconstant(PyObject *SWIGUNUSEDPA
   d = PyModule_GetDict(module);
   if (!d) return NULL;
   SWIG_Python_SetConstant(d, "SolverType_screen_fista",SWIG_From_int(static_cast< int >(hdim::SolverType::screen_fista)));
-  return SWIG_Py_Void();
-}
-
-
-SWIGINTERN PyObject *SolverType_cl_fista_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *module;
-  PyObject *d;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigconstant", &module)) return NULL;
-  d = PyModule_GetDict(module);
-  if (!d) return NULL;
-  SWIG_Python_SetConstant(d, "SolverType_cl_fista",SWIG_From_int(static_cast< int >(hdim::SolverType::cl_fista)));
   return SWIG_Py_Void();
 }
 
@@ -4430,246 +4408,6 @@ SWIGINTERN PyObject *_wrap_delete_CL_abstractSolver(PyObject *SWIGUNUSEDPARM(sel
   return resultobj;
 fail:
   return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_CL_abstractSolver___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::internal::CL_AbstractSolver< double > *arg1 = (hdim::internal::CL_AbstractSolver< double > *) 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg3 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg4 = 0 ;
-  double arg5 ;
-  unsigned int arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp3 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp4 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  unsigned int val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:CL_abstractSolver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__CL_AbstractSolverT_double_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CL_abstractSolver___call__" "', argument " "1"" of type '" "hdim::internal::CL_AbstractSolver< double > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::internal::CL_AbstractSolver< double > * >(argp1);
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
-    SWIG_fail;
-    arg2 = &temp2;
-  }
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp3, obj2))
-    SWIG_fail;
-    arg3 = &temp3;
-  }
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp4, obj3))
-    SWIG_fail;
-    arg4 = &temp4;
-  }
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "CL_abstractSolver___call__" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  ecode6 = SWIG_AsVal_unsigned_SS_int(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "CL_abstractSolver___call__" "', argument " "6"" of type '" "unsigned int""'");
-  } 
-  arg6 = static_cast< unsigned int >(val6);
-  result = (arg1)->operator ()((Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
-  {
-    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&resultobj, &result))
-    SWIG_fail;
-  }
-  
-  
-  
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_CL_abstractSolver___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::internal::CL_AbstractSolver< double > *arg1 = (hdim::internal::CL_AbstractSolver< double > *) 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg3 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg4 = 0 ;
-  double arg5 ;
-  double arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp3 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp4 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  double val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:CL_abstractSolver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__CL_AbstractSolverT_double_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CL_abstractSolver___call__" "', argument " "1"" of type '" "hdim::internal::CL_AbstractSolver< double > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::internal::CL_AbstractSolver< double > * >(argp1);
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
-    SWIG_fail;
-    arg2 = &temp2;
-  }
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp3, obj2))
-    SWIG_fail;
-    arg3 = &temp3;
-  }
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp4, obj3))
-    SWIG_fail;
-    arg4 = &temp4;
-  }
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "CL_abstractSolver___call__" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  ecode6 = SWIG_AsVal_double(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "CL_abstractSolver___call__" "', argument " "6"" of type '" "double""'");
-  } 
-  arg6 = static_cast< double >(val6);
-  result = (arg1)->operator ()((Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
-  {
-    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&resultobj, &result))
-    SWIG_fail;
-  }
-  
-  
-  
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_CL_abstractSolver___call__(PyObject *self, PyObject *args) {
-  Py_ssize_t argc;
-  PyObject *argv[7] = {
-    0
-  };
-  Py_ssize_t ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 6) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 6) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__CL_AbstractSolverT_double_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        _v = is_array(argv[1]);
-      }
-      if (_v) {
-        {
-          _v = is_array(argv[2]);
-        }
-        if (_v) {
-          {
-            _v = is_array(argv[3]);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_unsigned_SS_int(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                return _wrap_CL_abstractSolver___call____SWIG_0(self, args);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__CL_AbstractSolverT_double_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        _v = is_array(argv[1]);
-      }
-      if (_v) {
-        {
-          _v = is_array(argv[2]);
-        }
-        if (_v) {
-          {
-            _v = is_array(argv[3]);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_double(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                return _wrap_CL_abstractSolver___call____SWIG_1(self, args);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'CL_abstractSolver___call__'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    hdim::internal::CL_AbstractSolver< double >::operator ()(Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< double,Eigen::Dynamic,1 > const &,Eigen::Matrix< double,Eigen::Dynamic,1 > const &,double,unsigned int)\n"
-    "    hdim::internal::CL_AbstractSolver< double >::operator ()(Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< double,Eigen::Dynamic,1 > const &,Eigen::Matrix< double,Eigen::Dynamic,1 > const &,double,double)\n");
-  return 0;
 }
 
 
@@ -6563,10 +6301,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { (char *)"SolverType_ista_swigconstant", SolverType_ista_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SolverType_screen_ista_swigconstant", SolverType_screen_ista_swigconstant, METH_VARARGS, NULL},
-	 { (char *)"SolverType_cl_ista_swigconstant", SolverType_cl_ista_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SolverType_fista_swigconstant", SolverType_fista_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SolverType_screen_fista_swigconstant", SolverType_screen_fista_swigconstant, METH_VARARGS, NULL},
-	 { (char *)"SolverType_cl_fista_swigconstant", SolverType_cl_fista_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SolverType_cd_swigconstant", SolverType_cd_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SolverType_screen_cd_swigconstant", SolverType_screen_cd_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"delete_baseSolver", _wrap_delete_baseSolver, METH_VARARGS, NULL},
@@ -6575,7 +6311,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_abstractSolver", _wrap_delete_abstractSolver, METH_VARARGS, NULL},
 	 { (char *)"abstractSolver_swigregister", abstractSolver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_CL_abstractSolver", _wrap_delete_CL_abstractSolver, METH_VARARGS, NULL},
-	 { (char *)"CL_abstractSolver___call__", _wrap_CL_abstractSolver___call__, METH_VARARGS, NULL},
 	 { (char *)"CL_abstractSolver_swigregister", CL_abstractSolver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_solver", _wrap_delete_solver, METH_VARARGS, NULL},
 	 { (char *)"solver___call__", _wrap_solver___call__, METH_VARARGS, NULL},

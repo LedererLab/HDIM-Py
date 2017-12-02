@@ -97,17 +97,11 @@ SolverType_ista = _hdim.SolverType_ista
 _hdim.SolverType_screen_ista_swigconstant(_hdim)
 SolverType_screen_ista = _hdim.SolverType_screen_ista
 
-_hdim.SolverType_cl_ista_swigconstant(_hdim)
-SolverType_cl_ista = _hdim.SolverType_cl_ista
-
 _hdim.SolverType_fista_swigconstant(_hdim)
 SolverType_fista = _hdim.SolverType_fista
 
 _hdim.SolverType_screen_fista_swigconstant(_hdim)
 SolverType_screen_fista = _hdim.SolverType_screen_fista
-
-_hdim.SolverType_cl_fista_swigconstant(_hdim)
-SolverType_cl_fista = _hdim.SolverType_cl_fista
 
 _hdim.SolverType_cd_swigconstant(_hdim)
 SolverType_cd = _hdim.SolverType_cd
@@ -164,9 +158,6 @@ class CL_abstractSolver(baseSolver):
     __repr__ = _swig_repr
     __swig_destroy__ = _hdim.delete_CL_abstractSolver
     __del__ = lambda self: None
-
-    def __call__(self, *args):
-        return _hdim.CL_abstractSolver___call__(self, *args)
 CL_abstractSolver_swigregister = _hdim.CL_abstractSolver_swigregister
 CL_abstractSolver_swigregister(CL_abstractSolver)
 
