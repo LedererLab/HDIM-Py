@@ -248,15 +248,15 @@ class CL_FISTA : public internal::CL_SubGradientSolver<T,Base> {
 
 %template(SGD) hdim::internal::SubGradientSolver<double,hdim::internal::Solver<double>>;
 %template(SGD_SR) hdim::internal::SubGradientSolver<double,hdim::internal::ScreeningSolver<double>>;
-%template(CL_SGD) hdim::internal::SubGradientSolver<double,hdim::internal::CL_Solver<double>>;
+%template(CL_SGD) hdim::internal::CL_SubGradientSolver<double,hdim::internal::CL_Solver<double>>;
 
 %template(ista) hdim::ISTA<double,hdim::internal::Solver<double>>;
 %template(screened_ista) hdim::ISTA<double,hdim::internal::ScreeningSolver<double>>;
-%template(CL_ista) hdim::ISTA<double,hdim::internal::CL_Solver<double>>;
+%template(CL_ista) hdim::CL_ISTA<double,hdim::internal::CL_Solver<double>>;
 
 %template(fista) hdim::FISTA<double,hdim::internal::Solver<double>>;
 %template(screened_fista) hdim::FISTA<double,hdim::internal::ScreeningSolver<double>>;
-%template(CL_fista) hdim::FISTA<double,hdim::internal::CL_Solver<double>>;
+%template(CL_fista) hdim::CL_FISTA<double,hdim::internal::CL_Solver<double>>;
 
 %template(CD) hdim::LazyCoordinateDescent<double,hdim::internal::Solver<double>>;
 %template(CD_SR) hdim::LazyCoordinateDescent<double,hdim::internal::ScreeningSolver<double>>;
