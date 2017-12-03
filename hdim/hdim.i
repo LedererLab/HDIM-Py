@@ -10,11 +10,6 @@
 #include "../src/Solvers/SubGradientDescent/FISTA/fista.hpp"
 #include "../src/Solvers/CoordinateDescent/coordinate_descent.hpp"
 #include "../src/Solvers/CoordinateDescent/coordinatedescentwithscreen.hpp"
-#include "../src/Solvers/viennacl_abstractsolver.hpp"
-#include "../src/Solvers/viennacl_solver.hpp"
-#include "../src/Solvers/SubGradientDescent/viennacl_subgradient_descent.hpp"
-#include "../src/Solvers/SubGradientDescent/ISTA/viennacl_ista.hpp"
-#include "../src/Solvers/SubGradientDescent/FISTA/viennacl_fista.hpp"
 #include "../src/FOS/x_fos.hpp"
 %}
 
@@ -42,13 +37,6 @@
 
 %include "../src/Solvers/CoordinateDescent/coordinate_descent.hpp"
 %include "../src/Solvers/CoordinateDescent/coordinatedescentwithscreen.hpp"
-
-%include "../src/Solvers/viennacl_abstractsolver.hpp"
-%include "../src/Solvers/viennacl_solver.hpp"
-
-%include "../src/Solvers/SubGradientDescent/viennacl_subgradient_descent.hpp"
-%include "../src/Solvers/SubGradientDescent/ISTA/viennacl_ista.hpp"
-%include "../src/Solvers/SubGradientDescent/FISTA/viennacl_fista.hpp"
 
 %include "../src/FOS/x_fos.hpp"
 
@@ -183,80 +171,19 @@ class LazyCoordinateDescent : public Base {
 
 };
 
-template < typename T >
-class CL_AbstractSolver : public hdim::internal::BaseSolver < T > {
-
-};
-
-template < typename T >
-class CL_Solver : public CL_AbstractSolver < T > {
-
-  public:
-
-    CL_Solver();
-    virtual ~CL_Solver() = 0;
-
-    virtual Eigen::Matrix< T, Eigen::Dynamic, 1 > operator()(
-        const Eigen::Matrix< T, Eigen::Dynamic, Eigen::Dynamic >& X,
-        const Eigen::Matrix< T, Eigen::Dynamic, 1 >& Y,
-        const Eigen::Matrix< T, Eigen::Dynamic, 1 >& Beta_0,
-        T lambda,
-        unsigned int num_iterations );
-
-    virtual Eigen::Matrix< T, Eigen::Dynamic, 1 > operator()(
-        const Eigen::Matrix< T, Eigen::Dynamic, Eigen::Dynamic >& X,
-        const Eigen::Matrix< T, Eigen::Dynamic, 1 >& Y,
-        const Eigen::Matrix< T, Eigen::Dynamic, 1 >& Beta_0,
-        T lambda,
-        T duality_gap_target );
-};
-
-template < typename T, typename Base = internal::CL_Solver<T> >
-class CL_SubGradientSolver : public Base {
-
-  public:
-    CL_SubGradientSolver( T L = 0.1 );
-    ~CL_SubGradientSolver();
-
-};
-
-template < typename T, typename Base = internal::CL_Solver< T > >
-class CL_ISTA : public internal::CL_SubGradientSolver<T,Base> {
-
-  public:
-    CL_ISTA( T L_0 = 0.1 );
-
-};
-
-template < typename T, typename Base = internal::CL_Solver< T > >
-class CL_FISTA : public internal::CL_SubGradientSolver<T,Base> {
-
-  public:
-    CL_FISTA( const Eigen::Matrix< T, Eigen::Dynamic, 1 >& Beta, T L_0 = 0.1 );
-
-};
-
 %template(baseSolver) hdim::internal::BaseSolver<double>;
-
 %template(abstractSolver) hdim::internal::AbstractSolver<double>;
-%template(CL_abstractSolver) hdim::internal::CL_AbstractSolver<double>;
-
 %template(solver) hdim::internal::Solver<double>;
-%template(CL_solver) hdim::internal::CL_Solver<double>;
-
 %template(SR_solver) hdim::internal::ScreeningSolver<double>;
 
 %template(SGD) hdim::internal::SubGradientSolver<double,hdim::internal::Solver<double>>;
 %template(SGD_SR) hdim::internal::SubGradientSolver<double,hdim::internal::ScreeningSolver<double>>;
-%template(CL_SGD) hdim::internal::CL_SubGradientSolver<double,hdim::internal::CL_Solver<double>>;
 
 %template(ista) hdim::ISTA<double,hdim::internal::Solver<double>>;
 %template(screened_ista) hdim::ISTA<double,hdim::internal::ScreeningSolver<double>>;
-%template(CL_ista) hdim::CL_ISTA<double,hdim::internal::CL_Solver<double>>;
 
 %template(fista) hdim::FISTA<double,hdim::internal::Solver<double>>;
 %template(screened_fista) hdim::FISTA<double,hdim::internal::ScreeningSolver<double>>;
-%template(CL_fista) hdim::CL_FISTA<double,hdim::internal::CL_Solver<double>>;
 
 %template(CD) hdim::LazyCoordinateDescent<double,hdim::internal::Solver<double>>;
 %template(CD_SR) hdim::LazyCoordinateDescent<double,hdim::internal::ScreeningSolver<double>>;

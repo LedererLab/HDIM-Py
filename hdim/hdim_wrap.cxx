@@ -3007,26 +3007,21 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_char swig_types[0]
-#define SWIGTYPE_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t swig_types[1]
-#define SWIGTYPE_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t swig_types[2]
-#define SWIGTYPE_p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[3]
-#define SWIGTYPE_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t swig_types[4]
-#define SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[5]
-#define SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t swig_types[6]
-#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[7]
-#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t swig_types[8]
-#define SWIGTYPE_p_hdim__X_FOST_double_t swig_types[9]
-#define SWIGTYPE_p_hdim__internal__AbstractSolverT_double_t swig_types[10]
-#define SWIGTYPE_p_hdim__internal__BaseSolverT_double_t swig_types[11]
-#define SWIGTYPE_p_hdim__internal__CL_AbstractSolverT_double_t swig_types[12]
-#define SWIGTYPE_p_hdim__internal__CL_SolverT_double_t swig_types[13]
-#define SWIGTYPE_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t swig_types[14]
-#define SWIGTYPE_p_hdim__internal__ScreeningSolverT_double_t swig_types[15]
-#define SWIGTYPE_p_hdim__internal__SolverT_double_t swig_types[16]
-#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[17]
-#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t swig_types[18]
-static swig_type_info *swig_types[20];
-static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
+#define SWIGTYPE_p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[1]
+#define SWIGTYPE_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t swig_types[2]
+#define SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[3]
+#define SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t swig_types[4]
+#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[5]
+#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t swig_types[6]
+#define SWIGTYPE_p_hdim__X_FOST_double_t swig_types[7]
+#define SWIGTYPE_p_hdim__internal__AbstractSolverT_double_t swig_types[8]
+#define SWIGTYPE_p_hdim__internal__BaseSolverT_double_t swig_types[9]
+#define SWIGTYPE_p_hdim__internal__ScreeningSolverT_double_t swig_types[10]
+#define SWIGTYPE_p_hdim__internal__SolverT_double_t swig_types[11]
+#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[12]
+#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t swig_types[13]
+static swig_type_info *swig_types[15];
+static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3140,11 +3135,6 @@ namespace swig {
 #include "../src/Solvers/SubGradientDescent/FISTA/fista.hpp"
 #include "../src/Solvers/CoordinateDescent/coordinate_descent.hpp"
 #include "../src/Solvers/CoordinateDescent/coordinatedescentwithscreen.hpp"
-#include "../src/Solvers/viennacl_abstractsolver.hpp"
-#include "../src/Solvers/viennacl_solver.hpp"
-#include "../src/Solvers/SubGradientDescent/viennacl_subgradient_descent.hpp"
-#include "../src/Solvers/SubGradientDescent/ISTA/viennacl_ista.hpp"
-#include "../src/Solvers/SubGradientDescent/FISTA/viennacl_fista.hpp"
 #include "../src/FOS/x_fos.hpp"
 
 
@@ -4390,34 +4380,6 @@ SWIGINTERN PyObject *abstractSolver_swigregister(PyObject *SWIGUNUSEDPARM(self),
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_delete_CL_abstractSolver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::internal::CL_AbstractSolver< double > *arg1 = (hdim::internal::CL_AbstractSolver< double > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_CL_abstractSolver",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__CL_AbstractSolverT_double_t, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_CL_abstractSolver" "', argument " "1"" of type '" "hdim::internal::CL_AbstractSolver< double > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::internal::CL_AbstractSolver< double > * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *CL_abstractSolver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__CL_AbstractSolverT_double_t, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
 SWIGINTERN PyObject *_wrap_delete_solver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   hdim::internal::Solver< double > *arg1 = (hdim::internal::Solver< double > *) 0 ;
@@ -4683,274 +4645,6 @@ SWIGINTERN PyObject *solver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__SolverT_double_t, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_delete_CL_solver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::internal::CL_Solver< double > *arg1 = (hdim::internal::CL_Solver< double > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_CL_solver",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__CL_SolverT_double_t, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_CL_solver" "', argument " "1"" of type '" "hdim::internal::CL_Solver< double > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::internal::CL_Solver< double > * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_CL_solver___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::internal::CL_Solver< double > *arg1 = (hdim::internal::CL_Solver< double > *) 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg3 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg4 = 0 ;
-  double arg5 ;
-  unsigned int arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp3 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp4 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  unsigned int val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:CL_solver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__CL_SolverT_double_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CL_solver___call__" "', argument " "1"" of type '" "hdim::internal::CL_Solver< double > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::internal::CL_Solver< double > * >(argp1);
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
-    SWIG_fail;
-    arg2 = &temp2;
-  }
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp3, obj2))
-    SWIG_fail;
-    arg3 = &temp3;
-  }
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp4, obj3))
-    SWIG_fail;
-    arg4 = &temp4;
-  }
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "CL_solver___call__" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  ecode6 = SWIG_AsVal_unsigned_SS_int(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "CL_solver___call__" "', argument " "6"" of type '" "unsigned int""'");
-  } 
-  arg6 = static_cast< unsigned int >(val6);
-  result = (arg1)->operator ()((Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
-  {
-    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&resultobj, &result))
-    SWIG_fail;
-  }
-  
-  
-  
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_CL_solver___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::internal::CL_Solver< double > *arg1 = (hdim::internal::CL_Solver< double > *) 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg3 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg4 = 0 ;
-  double arg5 ;
-  double arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp3 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp4 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  double val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:CL_solver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__CL_SolverT_double_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CL_solver___call__" "', argument " "1"" of type '" "hdim::internal::CL_Solver< double > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::internal::CL_Solver< double > * >(argp1);
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
-    SWIG_fail;
-    arg2 = &temp2;
-  }
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp3, obj2))
-    SWIG_fail;
-    arg3 = &temp3;
-  }
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp4, obj3))
-    SWIG_fail;
-    arg4 = &temp4;
-  }
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "CL_solver___call__" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  ecode6 = SWIG_AsVal_double(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "CL_solver___call__" "', argument " "6"" of type '" "double""'");
-  } 
-  arg6 = static_cast< double >(val6);
-  result = (arg1)->operator ()((Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
-  {
-    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&resultobj, &result))
-    SWIG_fail;
-  }
-  
-  
-  
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_CL_solver___call__(PyObject *self, PyObject *args) {
-  Py_ssize_t argc;
-  PyObject *argv[7] = {
-    0
-  };
-  Py_ssize_t ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 6) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 6) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__CL_SolverT_double_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        _v = is_array(argv[1]);
-      }
-      if (_v) {
-        {
-          _v = is_array(argv[2]);
-        }
-        if (_v) {
-          {
-            _v = is_array(argv[3]);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_unsigned_SS_int(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                return _wrap_CL_solver___call____SWIG_0(self, args);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__CL_SolverT_double_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        _v = is_array(argv[1]);
-      }
-      if (_v) {
-        {
-          _v = is_array(argv[2]);
-        }
-        if (_v) {
-          {
-            _v = is_array(argv[3]);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_double(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                return _wrap_CL_solver___call____SWIG_1(self, args);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'CL_solver___call__'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    hdim::internal::CL_Solver< double >::operator ()(Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< double,Eigen::Dynamic,1 > const &,Eigen::Matrix< double,Eigen::Dynamic,1 > const &,double,unsigned int)\n"
-    "    hdim::internal::CL_Solver< double >::operator ()(Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< double,Eigen::Dynamic,1 > const &,Eigen::Matrix< double,Eigen::Dynamic,1 > const &,double,double)\n");
-  return 0;
-}
-
-
-SWIGINTERN PyObject *CL_solver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__CL_SolverT_double_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -5278,34 +4972,6 @@ SWIGINTERN PyObject *SGD_SR_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_delete_CL_SGD(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *arg1 = (hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_CL_SGD",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_CL_SGD" "', argument " "1"" of type '" "hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *CL_SGD_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
 SWIGINTERN PyObject *_wrap_new_ista__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   double arg1 ;
@@ -5499,104 +5165,6 @@ SWIGINTERN PyObject *screened_ista_swigregister(PyObject *SWIGUNUSEDPARM(self), 
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_CL_ista__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  double arg1 ;
-  double val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_CL_ista",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_double(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_CL_ista" "', argument " "1"" of type '" "double""'");
-  } 
-  arg1 = static_cast< double >(val1);
-  result = (hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *)new hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > >(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_CL_ista__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_CL_ista")) SWIG_fail;
-  result = (hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *)new hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > >();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_CL_ista(PyObject *self, PyObject *args) {
-  Py_ssize_t argc;
-  PyObject *argv[2] = {
-    0
-  };
-  Py_ssize_t ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 1) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_new_CL_ista__SWIG_1(self, args);
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_double(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_new_CL_ista__SWIG_0(self, args);
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_CL_ista'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > >::CL_ISTA(double)\n"
-    "    hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > >::CL_ISTA()\n");
-  return 0;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_CL_ista(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *arg1 = (hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_CL_ista",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_CL_ista" "', argument " "1"" of type '" "hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *CL_ista_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -5855,135 +5423,6 @@ SWIGINTERN PyObject *screened_fista_swigregister(PyObject *SWIGUNUSEDPARM(self),
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_CL_fista__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg1 = 0 ;
-  double arg2 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp1 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_CL_fista",&obj0,&obj1)) SWIG_fail;
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp1, obj0))
-    SWIG_fail;
-    arg1 = &temp1;
-  }
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_CL_fista" "', argument " "2"" of type '" "double""'");
-  } 
-  arg2 = static_cast< double >(val2);
-  result = (hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *)new hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > >((Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg1,arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_POINTER_NEW |  0 );
-  
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_CL_fista__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > *arg1 = 0 ;
-  Eigen::Matrix< double,Eigen::Dynamic,1 > temp1 ;
-  PyObject * obj0 = 0 ;
-  hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_CL_fista",&obj0)) SWIG_fail;
-  {
-    // In: const&
-    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<double,Eigen::Dynamic,1> >(&temp1, obj0))
-    SWIG_fail;
-    arg1 = &temp1;
-  }
-  result = (hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *)new hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > >((Eigen::Matrix< double,Eigen::Dynamic,1 > const &)*arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_POINTER_NEW |  0 );
-  
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_CL_fista(PyObject *self, PyObject *args) {
-  Py_ssize_t argc;
-  PyObject *argv[3] = {
-    0
-  };
-  Py_ssize_t ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      _v = is_array(argv[0]);
-    }
-    if (_v) {
-      return _wrap_new_CL_fista__SWIG_1(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      _v = is_array(argv[0]);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_double(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_new_CL_fista__SWIG_0(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_CL_fista'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > >::CL_FISTA(Eigen::Matrix< double,Eigen::Dynamic,1 > const &,double)\n"
-    "    hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > >::CL_FISTA(Eigen::Matrix< double,Eigen::Dynamic,1 > const &)\n");
-  return 0;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_CL_fista(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *arg1 = (hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_CL_fista",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_CL_fista" "', argument " "1"" of type '" "hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *""'"); 
-  }
-  arg1 = reinterpret_cast< hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *CL_fista_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -6481,14 +5920,9 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"baseSolver_swigregister", baseSolver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_abstractSolver", _wrap_delete_abstractSolver, METH_VARARGS, NULL},
 	 { (char *)"abstractSolver_swigregister", abstractSolver_swigregister, METH_VARARGS, NULL},
-	 { (char *)"delete_CL_abstractSolver", _wrap_delete_CL_abstractSolver, METH_VARARGS, NULL},
-	 { (char *)"CL_abstractSolver_swigregister", CL_abstractSolver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_solver", _wrap_delete_solver, METH_VARARGS, NULL},
 	 { (char *)"solver___call__", _wrap_solver___call__, METH_VARARGS, NULL},
 	 { (char *)"solver_swigregister", solver_swigregister, METH_VARARGS, NULL},
-	 { (char *)"delete_CL_solver", _wrap_delete_CL_solver, METH_VARARGS, NULL},
-	 { (char *)"CL_solver___call__", _wrap_CL_solver___call__, METH_VARARGS, NULL},
-	 { (char *)"CL_solver_swigregister", CL_solver_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_SR_solver", _wrap_delete_SR_solver, METH_VARARGS, NULL},
 	 { (char *)"SR_solver___call__", _wrap_SR_solver___call__, METH_VARARGS, NULL},
 	 { (char *)"SR_solver_swigregister", SR_solver_swigregister, METH_VARARGS, NULL},
@@ -6496,26 +5930,18 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"SGD_swigregister", SGD_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_SGD_SR", _wrap_delete_SGD_SR, METH_VARARGS, NULL},
 	 { (char *)"SGD_SR_swigregister", SGD_SR_swigregister, METH_VARARGS, NULL},
-	 { (char *)"delete_CL_SGD", _wrap_delete_CL_SGD, METH_VARARGS, NULL},
-	 { (char *)"CL_SGD_swigregister", CL_SGD_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_ista", _wrap_new_ista, METH_VARARGS, NULL},
 	 { (char *)"delete_ista", _wrap_delete_ista, METH_VARARGS, NULL},
 	 { (char *)"ista_swigregister", ista_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_screened_ista", _wrap_new_screened_ista, METH_VARARGS, NULL},
 	 { (char *)"delete_screened_ista", _wrap_delete_screened_ista, METH_VARARGS, NULL},
 	 { (char *)"screened_ista_swigregister", screened_ista_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_CL_ista", _wrap_new_CL_ista, METH_VARARGS, NULL},
-	 { (char *)"delete_CL_ista", _wrap_delete_CL_ista, METH_VARARGS, NULL},
-	 { (char *)"CL_ista_swigregister", CL_ista_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_fista", _wrap_new_fista, METH_VARARGS, NULL},
 	 { (char *)"delete_fista", _wrap_delete_fista, METH_VARARGS, NULL},
 	 { (char *)"fista_swigregister", fista_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_screened_fista", _wrap_new_screened_fista, METH_VARARGS, NULL},
 	 { (char *)"delete_screened_fista", _wrap_delete_screened_fista, METH_VARARGS, NULL},
 	 { (char *)"screened_fista_swigregister", screened_fista_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_CL_fista", _wrap_new_CL_fista, METH_VARARGS, NULL},
-	 { (char *)"delete_CL_fista", _wrap_delete_CL_fista, METH_VARARGS, NULL},
-	 { (char *)"CL_fista_swigregister", CL_fista_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_CD", _wrap_new_CD, METH_VARARGS, NULL},
 	 { (char *)"delete_CD", _wrap_delete_CD, METH_VARARGS, NULL},
 	 { (char *)"CD_swigregister", CD_swigregister, METH_VARARGS, NULL},
@@ -6538,21 +5964,6 @@ static PyMethodDef SwigMethods[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *)  ((hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *) x));
-}
-static void *_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *)  ((hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *) x));
-}
-static void *_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_Solver< double > *)  ((hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) x));
-}
-static void *_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_Solver< double > *) (hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) ((hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *) x));
-}
-static void *_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_Solver< double > *) (hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) ((hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *) x));
-}
 static void *_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::ScreeningSolver< double > *) (hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *) ((hdim::ISTA< double,hdim::internal::ScreeningSolver< double > > *) x));
 }
@@ -6576,18 +5987,6 @@ static void *_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim_
 }
 static void *_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::Solver< double > *) (hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *) ((hdim::ISTA< double,hdim::internal::Solver< double > > *) x));
-}
-static void *_p_hdim__internal__CL_SolverT_double_tTo_p_hdim__internal__CL_AbstractSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_AbstractSolver< double > *)  ((hdim::internal::CL_Solver< double > *) x));
-}
-static void *_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_AbstractSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_AbstractSolver< double > *) (hdim::internal::CL_Solver< double > *) ((hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) x));
-}
-static void *_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_AbstractSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_AbstractSolver< double > *) (hdim::internal::CL_Solver< double > *)(hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) ((hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *) x));
-}
-static void *_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_AbstractSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::CL_AbstractSolver< double > *) (hdim::internal::CL_Solver< double > *)(hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) ((hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *) x));
 }
 static void *_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::AbstractSolver< double > *) (hdim::internal::ScreeningSolver< double > *)(hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *) ((hdim::ISTA< double,hdim::internal::ScreeningSolver< double > > *) x));
@@ -6619,14 +6018,11 @@ static void *_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim_
 static void *_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::AbstractSolver< double > *) (hdim::internal::Solver< double > *)(hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *) ((hdim::ISTA< double,hdim::internal::Solver< double > > *) x));
 }
-static void *_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::CL_AbstractSolver< double > *)(hdim::internal::CL_Solver< double > *)(hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) ((hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *) x));
-}
-static void *_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::CL_AbstractSolver< double > *)(hdim::internal::CL_Solver< double > *)(hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) ((hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *) x));
-}
 static void *_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::ScreeningSolver< double > *)(hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *) ((hdim::ISTA< double,hdim::internal::ScreeningSolver< double > > *) x));
+}
+static void *_p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::ScreeningSolver< double > *)(hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *) ((hdim::FISTA< double,hdim::internal::ScreeningSolver< double > > *) x));
 }
 static void *_p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::Solver< double > *) ((hdim::LazyCoordinateDescent< double,hdim::internal::Solver< double > > *) x));
@@ -6634,38 +6030,26 @@ static void *_p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_doub
 static void *_p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::ScreeningSolver< double > *) ((hdim::LazyCoordinateDescent< double,hdim::internal::ScreeningSolver< double > > *) x));
 }
-static void *_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::Solver< double > *)(hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *) ((hdim::ISTA< double,hdim::internal::Solver< double > > *) x));
-}
-static void *_p_hdim__internal__ScreeningSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *) ((hdim::internal::ScreeningSolver< double > *) x));
-}
-static void *_p_hdim__internal__CL_SolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::CL_AbstractSolver< double > *) ((hdim::internal::CL_Solver< double > *) x));
+static void *_p_hdim__internal__AbstractSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< double > *)  ((hdim::internal::AbstractSolver< double > *) x));
 }
 static void *_p_hdim__internal__SolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *) ((hdim::internal::Solver< double > *) x));
 }
-static void *_p_hdim__internal__CL_AbstractSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *)  ((hdim::internal::CL_AbstractSolver< double > *) x));
-}
-static void *_p_hdim__internal__AbstractSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *)  ((hdim::internal::AbstractSolver< double > *) x));
-}
-static void *_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::CL_AbstractSolver< double > *)(hdim::internal::CL_Solver< double > *) ((hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *) x));
-}
-static void *_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::ScreeningSolver< double > *) ((hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *) x));
+static void *_p_hdim__internal__ScreeningSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *) ((hdim::internal::ScreeningSolver< double > *) x));
 }
 static void *_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::Solver< double > *) ((hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *) x));
 }
+static void *_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::ScreeningSolver< double > *) ((hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *) x));
+}
 static void *_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::Solver< double > *)(hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *) ((hdim::FISTA< double,hdim::internal::Solver< double > > *) x));
 }
-static void *_p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::ScreeningSolver< double > *)(hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *) ((hdim::FISTA< double,hdim::internal::ScreeningSolver< double > > *) x));
+static void *_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< double > *) (hdim::internal::AbstractSolver< double > *)(hdim::internal::Solver< double > *)(hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *) ((hdim::ISTA< double,hdim::internal::Solver< double > > *) x));
 }
 static void *_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *)  ((hdim::ISTA< double,hdim::internal::ScreeningSolver< double > > *) x));
@@ -6680,8 +6064,6 @@ static void *_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__
     return (void *)((hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *)  ((hdim::ISTA< double,hdim::internal::Solver< double > > *) x));
 }
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t = {"_p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t", "hdim::CL_FISTA< double,hdim::internal::CL_Solver< double > > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t = {"_p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t", "hdim::CL_ISTA< double,hdim::internal::CL_Solver< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t = {"_p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t", "hdim::FISTA< double,hdim::internal::ScreeningSolver< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t = {"_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t", "hdim::FISTA< double,hdim::internal::Solver< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t = {"_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t", "hdim::ISTA< double,hdim::internal::ScreeningSolver< double > > *", 0, 0, (void*)0, 0};
@@ -6691,9 +6073,6 @@ static swig_type_info _swigt__p_hdim__LazyCoordinateDescentT_double_hdim__intern
 static swig_type_info _swigt__p_hdim__X_FOST_double_t = {"_p_hdim__X_FOST_double_t", "hdim::X_FOS< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__AbstractSolverT_double_t = {"_p_hdim__internal__AbstractSolverT_double_t", "hdim::internal::AbstractSolver< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__BaseSolverT_double_t = {"_p_hdim__internal__BaseSolverT_double_t", "hdim::internal::BaseSolver< double > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_hdim__internal__CL_AbstractSolverT_double_t = {"_p_hdim__internal__CL_AbstractSolverT_double_t", "hdim::internal::CL_AbstractSolver< double > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_hdim__internal__CL_SolverT_double_t = {"_p_hdim__internal__CL_SolverT_double_t", "hdim::internal::CL_Solver< double > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t = {"_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t", "hdim::internal::CL_SubGradientSolver< double,hdim::internal::CL_Solver< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__ScreeningSolverT_double_t = {"_p_hdim__internal__ScreeningSolverT_double_t", "hdim::internal::ScreeningSolver< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__SolverT_double_t = {"_p_hdim__internal__SolverT_double_t", "hdim::internal::Solver< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t = {"_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t", "hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *", 0, 0, (void*)0, 0};
@@ -6701,8 +6080,6 @@ static swig_type_info _swigt__p_hdim__internal__SubGradientSolverT_double_hdim__
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
-  &_swigt__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t,
-  &_swigt__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t,
   &_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t,
   &_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t,
   &_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t,
@@ -6712,9 +6089,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_hdim__X_FOST_double_t,
   &_swigt__p_hdim__internal__AbstractSolverT_double_t,
   &_swigt__p_hdim__internal__BaseSolverT_double_t,
-  &_swigt__p_hdim__internal__CL_AbstractSolverT_double_t,
-  &_swigt__p_hdim__internal__CL_SolverT_double_t,
-  &_swigt__p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t,
   &_swigt__p_hdim__internal__ScreeningSolverT_double_t,
   &_swigt__p_hdim__internal__SolverT_double_t,
   &_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t,
@@ -6722,8 +6096,6 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t[] = {  {&_swigt__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t[] = {  {&_swigt__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t[] = {  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t[] = {  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t[] = {  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -6732,10 +6104,7 @@ static swig_cast_info _swigc__p_hdim__LazyCoordinateDescentT_double_hdim__intern
 static swig_cast_info _swigc__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t[] = {  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__X_FOST_double_t[] = {  {&_swigt__p_hdim__X_FOST_double_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__AbstractSolverT_double_t[] = {  {&_swigt__p_hdim__internal__AbstractSolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__SolverT_double_t, _p_hdim__internal__SolverT_double_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__ScreeningSolverT_double_t, _p_hdim__internal__ScreeningSolverT_double_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_hdim__internal__BaseSolverT_double_t[] = {  {&_swigt__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__ScreeningSolverT_double_t, _p_hdim__internal__ScreeningSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SolverT_double_t, _p_hdim__internal__SolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__AbstractSolverT_double_t, _p_hdim__internal__AbstractSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__BaseSolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__CL_AbstractSolverT_double_t, _p_hdim__internal__CL_AbstractSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__CL_SolverT_double_t, _p_hdim__internal__CL_SolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_hdim__internal__CL_AbstractSolverT_double_t[] = {  {&_swigt__p_hdim__internal__CL_AbstractSolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__CL_SolverT_double_t, _p_hdim__internal__CL_SolverT_double_tTo_p_hdim__internal__CL_AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_AbstractSolverT_double_t, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_hdim__internal__CL_SolverT_double_t[] = {  {&_swigt__p_hdim__internal__CL_SolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SolverT_double_t, 0, 0},  {&_swigt__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SolverT_double_t, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t[] = {  {&_swigt__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t, 0, 0},  {&_swigt__p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t, 0, 0, 0},  {&_swigt__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t, _p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_tTo_p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__internal__BaseSolverT_double_t[] = {  {&_swigt__p_hdim__internal__BaseSolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__AbstractSolverT_double_t, _p_hdim__internal__AbstractSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SolverT_double_t, _p_hdim__internal__SolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__ScreeningSolverT_double_t, _p_hdim__internal__ScreeningSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__ScreeningSolverT_double_t[] = {  {&_swigt__p_hdim__internal__ScreeningSolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__SolverT_double_t[] = {  {&_swigt__p_hdim__internal__SolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t[] = {  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0},{0, 0, 0, 0}};
@@ -6743,8 +6112,6 @@ static swig_cast_info _swigc__p_hdim__internal__SubGradientSolverT_double_hdim__
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_char,
-  _swigc__p_hdim__CL_FISTAT_double_hdim__internal__CL_SolverT_double_t_t,
-  _swigc__p_hdim__CL_ISTAT_double_hdim__internal__CL_SolverT_double_t_t,
   _swigc__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t,
   _swigc__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t,
   _swigc__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t,
@@ -6754,9 +6121,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_hdim__X_FOST_double_t,
   _swigc__p_hdim__internal__AbstractSolverT_double_t,
   _swigc__p_hdim__internal__BaseSolverT_double_t,
-  _swigc__p_hdim__internal__CL_AbstractSolverT_double_t,
-  _swigc__p_hdim__internal__CL_SolverT_double_t,
-  _swigc__p_hdim__internal__CL_SubGradientSolverT_double_hdim__internal__CL_SolverT_double_t_t,
   _swigc__p_hdim__internal__ScreeningSolverT_double_t,
   _swigc__p_hdim__internal__SolverT_double_t,
   _swigc__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t,
