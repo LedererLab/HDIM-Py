@@ -7,3 +7,6 @@
 
 # Built files
 /build
+
+# PyPi config. files
+.pypirc

@@ -2,7 +2,7 @@ from setuptools import setup, Extension
 from setuptools.command.install import install
 import glob
 import os
-import pathlib
+from pathlib import Path
 from textwrap import dedent
 
 def file_search( directory, extension = None ):
@@ -34,17 +34,10 @@ print( header_files )
 
 extension = Extension('_hdim',
 	            define_macros = [('NDEBUG',None)],
-	            include_dirs = ['./depends/eigen3'],
+	            include_dirs = ['/usr/include/eigen3'],
 	            sources = source_files,
 	            language='c++',
 	            extra_compile_args=['--std=c++11','-O3','-mtune=native','-march=native'])
-
-# extension = Extension('_hdim',
-# 	            define_macros = [('NDEBUG',None)],
-# 	            include_dirs = ['/usr/include/eigen3'],
-# 	            sources = source_files,
-# 	            language='c++',
-# 	            extra_compile_args=['--std=c++11','-O3','-mtune=native','-march=native'])
 
 setup(name="hdim",
       version="0.1.0",
