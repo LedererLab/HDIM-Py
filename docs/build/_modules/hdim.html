@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>hdim &mdash; HDIM-Py 0.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="HDIM-Py 0.1.2 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">HDIM-Py 0.1.2 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for hdim</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.hdim</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="ISTA"><a class="viewcode-back" href="../hdim.html#hdim.ISTA">[docs]</a><span class="k">def</span> <span class="nf">ISTA</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">convergence_criteria</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">L_0</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">use_screening_rules</span> <span class="o">=</span> <span class="bp">True</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use the Iterative Shrinkage Thresholding Algorithm ( ISTA ) to iteratively solve the LASSO.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X: An n x p 2D array representing the design matrix.</span>
+
+<span class="sd">        Y: A 1 x p 1D array representing the predictors</span>
+
+<span class="sd">        Beta_0: A 1 x p 1D array describing initial condition for Beta.</span>
+<span class="sd">        convergence_criteria: Can be either an positive integer descrbing the number</span>
+<span class="sd">        if iterations that the solve should be run for, or a positive float describing</span>
+<span class="sd">        the smallest allowable Duality Gap.</span>
+
+<span class="sd">        Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )</span>
+
+<span class="sd">        L_0: Learning rate used by the backtracking line search.</span>
+
+<span class="sd">        use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling</span>
+<span class="sd">        these rules MAY speed up the algorithm.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        numpy array containing the coefficients of Beta after the specified convergence</span>
+<span class="sd">        criteria has been meet.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: Raised if convergence_criteria is neither a positive integer</span>
+<span class="sd">        or a positive float.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="n">convergence_criteria</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span> <span class="s2">&quot;Convergence criteria must be positive int or float.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">use_screening_rules</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">hdim</span><span class="o">.</span><span class="n">ista</span><span class="p">(</span> <span class="n">L_0</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">hdim</span><span class="o">.</span><span class="n">screened_ista</span><span class="p">(</span> <span class="n">L_0</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">solver</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">convergence_criteria</span> <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FISTA"><a class="viewcode-back" href="../hdim.html#hdim.FISTA">[docs]</a><span class="k">def</span> <span class="nf">FISTA</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">convergence_criteria</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">L_0</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">use_screening_rules</span> <span class="o">=</span> <span class="bp">True</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use the Fast Iterative Shrinkage Thresholding Algorithm ( FISTA ) to iteratively solve the LASSO.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X: An n x p 2D array representing the design matrix.</span>
+
+<span class="sd">        Y: A 1 x p 1D array representing the predictors</span>
+
+<span class="sd">        Beta_0: A 1 x p 1D array describing initial condition for Beta.</span>
+
+<span class="sd">        convergence_criteria: Can be either an positive integer descrbing the number</span>
+<span class="sd">        if iterations that the solve should be run for, or a positive float describing</span>
+<span class="sd">        the smallest allowable Duality Gap.</span>
+
+<span class="sd">        Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )</span>
+
+<span class="sd">        L_0: Learning rate used by the backtracking line search.</span>
+
+<span class="sd">        use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling</span>
+<span class="sd">        these rules MAY speed up the algorithm.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        numpy array containing the coefficients of Beta after the specified convergence</span>
+<span class="sd">        criteria has been meet.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: Raised if convergence_criteria is neither a positive integer</span>
+<span class="sd">        or a positive float.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="n">convergence_criteria</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span> <span class="s2">&quot;Convergence criteria must be positive int or float.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">use_screening_rules</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">hdim</span><span class="o">.</span><span class="n">fista</span><span class="p">(</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">L_0</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">hdim</span><span class="o">.</span><span class="n">screened_fista</span><span class="p">(</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">L_0</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">solver</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">convergence_criteria</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="CoordinateDescent"><a class="viewcode-back" href="../hdim.html#hdim.CoordinateDescent">[docs]</a><span class="k">def</span> <span class="nf">CoordinateDescent</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">convergence_criteria</span><span class="p">,</span> <span class="n">use_screening_rules</span> <span class="o">=</span> <span class="bp">True</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use Coordinate Descent to iteratively solve the LASSO.</span>
+
+<span class="sd">    Generally performs better than sub-gradient descent methods such as ISTA or FISTA.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X: An n x p 2D array representing the design matrix.</span>
+
+<span class="sd">        Y: A 1 x p 1D array representing the predictors</span>
+
+<span class="sd">        Beta_0: A 1 x p 1D array describing initial condition for Beta.</span>
+
+<span class="sd">        convergence_criteria: Can be either an positive integer descrbing the number</span>
+<span class="sd">        if iterations that the solve should be run for, or a positive float describing</span>
+<span class="sd">        the smallest allowable Duality Gap.</span>
+
+<span class="sd">        Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )</span>
+<span class="sd">        use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling</span>
+<span class="sd">        these rules MAY speed up the algorithm.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        numpy array containing the coefficients of Beta after the specified convergence</span>
+<span class="sd">        criteria has been meet.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: Raised if convergence_criteria is neither a positive integer</span>
+<span class="sd">        or a positive float.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">use_screening_rules</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">hdim</span><span class="o">.</span><span class="n">CD</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">hdim</span><span class="o">.</span><span class="n">CD_SR</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">solver</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">convergence_criteria</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="FOS"><a class="viewcode-back" href="../hdim.html#hdim.FOS">[docs]</a><span class="k">def</span> <span class="nf">FOS</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Beta_0</span><span class="p">,</span> <span class="n">solver</span> <span class="o">=</span> <span class="n">hdim</span><span class="o">.</span><span class="n">SolverType_cd</span><span class="p">,</span> <span class="n">screening_rules</span> <span class="o">=</span> <span class="bp">True</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use the Fast and Optimal Support ( FOS ) method to estimate the support for</span>
+<span class="sd">    a given LASSO problem.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X: An n x p 2D array representing the design matrix.</span>
+
+<span class="sd">        Y: A 1 x p 1D array representing the predictors</span>
+
+<span class="sd">        Beta_0: A 1 x p 1D array describing initial condition for Beta.</span>
+
+<span class="sd">        solver: The type of iterative solver used internally. Can used</span>
+<span class="sd">        sub-gradient descent methods or coordinate descent, both of which</span>
+<span class="sd">        can use GAPSAFE screening rules or not.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        numpy array containing the estimated support and intercept term.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fos_object</span> <span class="o">=</span> <span class="n">hdim</span><span class="o">.</span><span class="n">fos</span><span class="p">()</span>
+    <span class="n">fos_object</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">solver</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fos_object</span><span class="o">.</span><span class="n">ReturnCoefficients</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">HDIM-Py 0.1.2 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Benjamin J Phillips.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

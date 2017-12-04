@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HDIM &mdash; HDIM-Py 0.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="HDIM-Py 0.1.2 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to HDIM-Py’s documentation!" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to HDIM-Py’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">HDIM-Py 0.1.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="hdim">
+<h1>HDIM<a class="headerlink" href="#hdim" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="iterative-solvers">
+<h2>Iterative Solvers<a class="headerlink" href="#iterative-solvers" title="Permalink to this headline">¶</a></h2>
+<p>Iterative solve the following problem, <span class="math">\(\hat{\beta} = \underset{ \beta \in \mathbb{R}^p }{\mathrm{argmin}}  ||Y - X  \beta||_2^2 + \lambda || \beta ||_1\)</span></p>
+<p>For a given design matrix X, a vector of predictors Y and vector <span class="math">\(\beta\)</span>.</p>
+<dl class="function">
+<dt id="hdim.ISTA">
+<code class="descclassname">hdim.</code><code class="descname">ISTA</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>Beta_0</em>, <em>convergence_criteria</em>, <em>Lambda</em>, <em>L_0=0.1</em>, <em>use_screening_rules=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hdim.html#ISTA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hdim.ISTA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the Iterative Shrinkage Thresholding Algorithm ( ISTA ) to iteratively solve the LASSO.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">X: An n x p 2D array representing the design matrix.</p>
+<p>Y: A 1 x p 1D array representing the predictors</p>
+<p>Beta_0: A 1 x p 1D array describing initial condition for Beta.
+convergence_criteria: Can be either an positive integer descrbing the number
+if iterations that the solve should be run for, or a positive float describing
+the smallest allowable Duality Gap.</p>
+<p>Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )</p>
+<p>L_0: Learning rate used by the backtracking line search.</p>
+<p class="last">use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling
+these rules MAY speed up the algorithm.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>numpy array containing the coefficients of Beta after the specified convergence
+criteria has been meet.</dd>
+<dt>Raises:</dt>
+<dd>ValueError: Raised if convergence_criteria is neither a positive integer
+or a positive float.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="hdim.FISTA">
+<code class="descclassname">hdim.</code><code class="descname">FISTA</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>Beta_0</em>, <em>convergence_criteria</em>, <em>Lambda</em>, <em>L_0=0.1</em>, <em>use_screening_rules=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hdim.html#FISTA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hdim.FISTA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the Fast Iterative Shrinkage Thresholding Algorithm ( FISTA ) to iteratively solve the LASSO.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">X: An n x p 2D array representing the design matrix.</p>
+<p>Y: A 1 x p 1D array representing the predictors</p>
+<p>Beta_0: A 1 x p 1D array describing initial condition for Beta.</p>
+<p>convergence_criteria: Can be either an positive integer descrbing the number
+if iterations that the solve should be run for, or a positive float describing
+the smallest allowable Duality Gap.</p>
+<p>Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )</p>
+<p>L_0: Learning rate used by the backtracking line search.</p>
+<p class="last">use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling
+these rules MAY speed up the algorithm.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>numpy array containing the coefficients of Beta after the specified convergence
+criteria has been meet.</dd>
+<dt>Raises:</dt>
+<dd>ValueError: Raised if convergence_criteria is neither a positive integer
+or a positive float.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="hdim.CoordinateDescent">
+<code class="descclassname">hdim.</code><code class="descname">CoordinateDescent</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>Beta_0</em>, <em>Lambda</em>, <em>convergence_criteria</em>, <em>use_screening_rules=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hdim.html#CoordinateDescent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hdim.CoordinateDescent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use Coordinate Descent to iteratively solve the LASSO.</p>
+<p>Generally performs better than sub-gradient descent methods such as ISTA or FISTA.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">X: An n x p 2D array representing the design matrix.</p>
+<p>Y: A 1 x p 1D array representing the predictors</p>
+<p>Beta_0: A 1 x p 1D array describing initial condition for Beta.</p>
+<p>convergence_criteria: Can be either an positive integer descrbing the number
+if iterations that the solve should be run for, or a positive float describing
+the smallest allowable Duality Gap.</p>
+<p class="last">Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )
+use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling
+these rules MAY speed up the algorithm.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>numpy array containing the coefficients of Beta after the specified convergence
+criteria has been meet.</dd>
+<dt>Raises:</dt>
+<dd>ValueError: Raised if convergence_criteria is neither a positive integer
+or a positive float.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="variable-selection-support-estimation">
+<h2>Variable Selection &amp; Support Estimation<a class="headerlink" href="#variable-selection-support-estimation" title="Permalink to this headline">¶</a></h2>
+<p>Use the LASSO objective function to estimate signifigant, non-zero enteries in a L1 regularized regression.</p>
+<dl class="function">
+<dt id="hdim.FOS">
+<code class="descclassname">hdim.</code><code class="descname">FOS</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>Beta_0</em>, <em>solver=4</em>, <em>screening_rules=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hdim.html#FOS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hdim.FOS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the Fast and Optimal Support ( FOS ) method to estimate the support for
+a given LASSO problem.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">X: An n x p 2D array representing the design matrix.</p>
+<p>Y: A 1 x p 1D array representing the predictors</p>
+<p>Beta_0: A 1 x p 1D array describing initial condition for Beta.</p>
+<p class="last">solver: The type of iterative solver used internally. Can used
+sub-gradient descent methods or coordinate descent, both of which
+can use GAPSAFE screening rules or not.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>numpy array containing the estimated support and intercept term.</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">HDIM</a><ul>
+<li><a class="reference internal" href="#iterative-solvers">Iterative Solvers</a></li>
+<li><a class="reference internal" href="#variable-selection-support-estimation">Variable Selection &amp; Support Estimation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to HDIM-Py&#8217;s documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/hdim.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to HDIM-Py’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">HDIM-Py 0.1.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Benjamin J Phillips.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+HDIM
+========================================
+
+.. automodule:: hdim
+  :members:
+  :special-members:

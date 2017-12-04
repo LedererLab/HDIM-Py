@@ -4,17 +4,20 @@ def ISTA( X, Y, Beta_0, convergence_criteria, Lambda, L_0 = 0.1, use_screening_r
     """
     Use the Iterative Shrinkage Thresholding Algorithm ( ISTA ) to iteratively solve the LASSO.
 
-    Solves the problem: arg min Beta { || X*Y - Beta ||_2^2 + Lambda*|| Beta ||_1 }
-
     Args:
         X: An n x p 2D array representing the design matrix.
+
         Y: A 1 x p 1D array representing the predictors
+
         Beta_0: A 1 x p 1D array describing initial condition for Beta.
         convergence_criteria: Can be either an positive integer descrbing the number
         if iterations that the solve should be run for, or a positive float describing
         the smallest allowable Duality Gap.
+
         Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )
+
         L_0: Learning rate used by the backtracking line search.
+
         use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling
         these rules MAY speed up the algorithm.
 
@@ -43,18 +46,21 @@ def FISTA( X, Y, Beta_0, convergence_criteria, Lambda, L_0 = 0.1, use_screening_
     """
     Use the Fast Iterative Shrinkage Thresholding Algorithm ( FISTA ) to iteratively solve the LASSO.
 
-    Solves the problem: arg min Beta { || X*Y - Beta ||_2^2 + Lambda*|| Beta ||_1 }
-    Using an accelerated version of ISTA.
-
     Args:
         X: An n x p 2D array representing the design matrix.
+
         Y: A 1 x p 1D array representing the predictors
+
         Beta_0: A 1 x p 1D array describing initial condition for Beta.
+
         convergence_criteria: Can be either an positive integer descrbing the number
         if iterations that the solve should be run for, or a positive float describing
         the smallest allowable Duality Gap.
+
         Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )
+
         L_0: Learning rate used by the backtracking line search.
+
         use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling
         these rules MAY speed up the algorithm.
 
@@ -82,17 +88,19 @@ def CoordinateDescent( X, Y, Beta_0, Lambda, convergence_criteria, use_screening
     """
     Use Coordinate Descent to iteratively solve the LASSO.
 
-    Solves the problem: arg min Beta { || X*Y - Beta ||_2^2 + Lambda*|| Beta ||_1 }
-
     Generally performs better than sub-gradient descent methods such as ISTA or FISTA.
 
     Args:
         X: An n x p 2D array representing the design matrix.
+
         Y: A 1 x p 1D array representing the predictors
+
         Beta_0: A 1 x p 1D array describing initial condition for Beta.
+
         convergence_criteria: Can be either an positive integer descrbing the number
         if iterations that the solve should be run for, or a positive float describing
         the smallest allowable Duality Gap.
+
         Lambda: Regularization hyper-parameter for the LASSO ( e.g. Lambda x || Beta ||_1 )
         use_screening_rules: Enable or disable GAPSAFE screening rules. Enabling
         these rules MAY speed up the algorithm.
@@ -120,8 +128,11 @@ def FOS( X, Y, Beta_0, solver = hdim.SolverType_cd, screening_rules = True ):
 
     Args:
         X: An n x p 2D array representing the design matrix.
+
         Y: A 1 x p 1D array representing the predictors
+
         Beta_0: A 1 x p 1D array describing initial condition for Beta.
+
         solver: The type of iterative solver used internally. Can used
         sub-gradient descent methods or coordinate descent, both of which
         can use GAPSAFE screening rules or not.
