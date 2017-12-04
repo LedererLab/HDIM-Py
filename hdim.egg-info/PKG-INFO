@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: hdim
-Version: 0.1.0
+Version: 0.1.2
 Summary: A toolkit for working with high-dimensional data.
 Home-page: https://github.com/LedererLab/FOS
 Author: Benjamin J Phillips
@@ -8,5 +8,9 @@ Author-email: bejphil@uw.edu
 License: MIT
 Description-Content-Type: UNKNOWN
 Description: UNKNOWN
-Platform: UNKNOWN
+Platform: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C++
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Intended Audience :: Science/Research
 Requires: NumPy (>= 1.3)

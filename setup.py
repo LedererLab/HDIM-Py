@@ -28,10 +28,6 @@ source_files.extend( file_search( "src", '.cpp' ) )
 header_files = []
 header_files.extend( file_search( "src", '.hpp' ) )
 
-header_files.extend( file_search( "depends" ) )
-
-print( header_files )
-
 extension = Extension('_hdim',
 	            define_macros = [('NDEBUG',None)],
 	            include_dirs = ['/usr/include/eigen3'],
@@ -40,7 +36,7 @@ extension = Extension('_hdim',
 	            extra_compile_args=['--std=c++11','-O3','-mtune=native','-march=native'])
 
 setup(name="hdim",
-      version="0.1.0",
+      version="0.1.2",
       description=("A toolkit for working with high-dimensional data."),
       url="https://github.com/LedererLab/FOS",
       author="Benjamin J Phillips",
@@ -50,4 +46,11 @@ setup(name="hdim",
       data_files = header_files, # Actually the header files needed to build from source
       ext_modules=[extension],
       requires=["NumPy (>= 1.3)"],
+      platforms = ["Linux"],
+    classifiers=[
+    'Programming Language :: Python :: 3',
+    'Programming Language :: C++',
+    'Topic :: Scientific/Engineering :: Mathematics',
+    'Intended Audience :: Science/Research',
+    ],
       zip_safe=False)

@@ -131,8 +131,8 @@ public:
 	~X_FOS();
 
 	void operator()( const Eigen::Matrix< T, Eigen::Dynamic, Eigen::Dynamic >& x,
-									 const Eigen::Matrix< T, Eigen::Dynamic, 1 >& y,
-									 SolverType s_type = SolverType::ista );
+			 const Eigen::Matrix< T, Eigen::Dynamic, 1 >& y,
+			 SolverType s_type = SolverType::ista );
 
 	T ReturnLambda();
 	T ReturnIntercept();
