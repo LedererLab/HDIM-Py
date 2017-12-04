@@ -1,9 +1,6 @@
 from setuptools import setup, Extension
-from setuptools.command.install import install
-import glob
-import os
 from pathlib import Path
-from textwrap import dedent
+import glob, os
 
 def file_search( directory, extension = None ):
 
@@ -36,7 +33,7 @@ extension = Extension('_hdim',
 	            extra_compile_args=['--std=c++11','-O3','-mtune=native','-march=native'])
 
 setup(name="hdim",
-      version="0.1.2",
+      version="0.1.3",
       description=("A toolkit for working with high-dimensional data."),
       url="https://github.com/LedererLab/FOS",
       author="Benjamin J Phillips",
