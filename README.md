@@ -21,6 +21,27 @@ directory for Eigen 3, labeled `eigen3`, should be located under `/usr/include/`
 
 This package is currently tested and officially supported only on **Linux** platforms.
 
+## Installation
+
+This package can be installed from source, or from the Python Package Index ( PyPi ).
+
+### From source
+
+- Clone the HDIM package into a convenient location via `git clone https://github.com/LedererLab/HDIM-Py.git`
+- Navigate to the root directory of the newly cloned repo ( e.g. `HDIM-Py` ).
+This directory will contain a file called `setup.py`.
+- Run the following command `pip3 install --user .` to install the package for only the
+current user, or run `sudo pip3 install .` to install the package system wide.
+- Either command will build the package and install it.
+
+### From PyPi
+
+This package is hosted on the Python Package Index and can be installed without
+cloning this repository.
+
+- Run the following command `pip3 install --user hdim` to install the package for only the
+current user, or run `sudo pip3 install hdim` to install the package system wide.
+
 ## Licensing
 
 The HDIM package is licensed under the MIT license. To view the MIT license please consult
