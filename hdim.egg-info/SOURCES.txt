@@ -1,5 +1,4 @@
 README.md
-setup.cfg
 setup.py
 hdim/__init__.py
 hdim/hdim.py

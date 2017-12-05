@@ -33,7 +33,7 @@ extension = Extension('_hdim',
 	            extra_compile_args=['--std=c++11','-O3','-mtune=native','-march=native'])
 
 setup(name="hdim",
-      version="0.1.3",
+      version="0.1.4",
       description=("A toolkit for working with high-dimensional data."),
       url="https://github.com/LedererLab/FOS",
       author="Benjamin J Phillips",

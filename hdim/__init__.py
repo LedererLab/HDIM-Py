@@ -121,7 +121,7 @@ def CoordinateDescent( X, Y, Beta_0, Lambda, convergence_criteria, use_screening
 
     return solver( X, Y, Beta_0, Lambda, convergence_criteria )
 
-def FOS( X, Y, Beta_0, solver = hdim.SolverType_cd, screening_rules = True ):
+def FOS( X, Y, solver = hdim.SolverType_cd, screening_rules = True ):
     """
     Use the Fast and Optimal Support ( FOS ) method to estimate the support for
     a given LASSO problem.
@@ -130,8 +130,6 @@ def FOS( X, Y, Beta_0, solver = hdim.SolverType_cd, screening_rules = True ):
         X: An n x p 2D array representing the design matrix.
 
         Y: A 1 x p 1D array representing the predictors
-
-        Beta_0: A 1 x p 1D array describing initial condition for Beta.
 
         solver: The type of iterative solver used internally. Can used
         sub-gradient descent methods or coordinate descent, both of which
