@@ -28,7 +28,7 @@ This package can be installed from source, or from the Python Package Index ( Py
 
 ### From source
 
-- Clone the HDIM package into a convenient location via `git clone https://github.com/LedererLab/HDIM-Py.git`
+- Clone the HDIM package into a convenient location via `git clone --recursive https://github.com/LedererLab/HDIM-Py.git`
 - Navigate to the root directory of the newly cloned repo ( e.g. `HDIM-Py` ).
 This directory will contain a file called `setup.py`.
 - Run the following command `pip3 install --user .` to install the package for only the
