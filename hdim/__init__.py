@@ -1,6 +1,6 @@
 from .hdim import *
 
-def ISTA( X, Y, Beta_0, convergence_criteria, Lambda, L_0 = 0.1, use_screening_rules = True ):
+def ISTA( X, Y, Beta_0, convergence_criteria, Lambda, L_0 = 0.1, use_screening_rules = True, use_single_precision = False ):
     """
     Use the Iterative Shrinkage Thresholding Algorithm ( ISTA ) to iteratively solve the LASSO.
 
@@ -42,7 +42,7 @@ def ISTA( X, Y, Beta_0, convergence_criteria, Lambda, L_0 = 0.1, use_screening_r
     return solver( X, Y, Beta_0, Lambda, convergence_criteria )
 
 
-def FISTA( X, Y, Beta_0, convergence_criteria, Lambda, L_0 = 0.1, use_screening_rules = True ):
+def FISTA( X, Y, Beta_0, convergence_criteria, Lambda, L_0 = 0.1, use_screening_rules = True, use_single_precision = False ):
     """
     Use the Fast Iterative Shrinkage Thresholding Algorithm ( FISTA ) to iteratively solve the LASSO.
 
@@ -84,7 +84,7 @@ def FISTA( X, Y, Beta_0, convergence_criteria, Lambda, L_0 = 0.1, use_screening_
 
     return solver( X, Y, Beta_0, Lambda, convergence_criteria )
 
-def CoordinateDescent( X, Y, Beta_0, Lambda, convergence_criteria, use_screening_rules = True ):
+def CoordinateDescent( X, Y, Beta_0, Lambda, convergence_criteria, use_screening_rules = True, use_single_precision = False ):
     """
     Use Coordinate Descent to iteratively solve the LASSO.
 
@@ -121,7 +121,7 @@ def CoordinateDescent( X, Y, Beta_0, Lambda, convergence_criteria, use_screening
 
     return solver( X, Y, Beta_0, Lambda, convergence_criteria )
 
-def FOS( X, Y, solver = hdim.SolverType_cd, screening_rules = True ):
+def FOS( X, Y, solver = hdim.SolverType_cd, screening_rules = True, use_single_precision = False ):
     """
     Use the Fast and Optimal Support ( FOS ) method to estimate the support for
     a given LASSO problem.

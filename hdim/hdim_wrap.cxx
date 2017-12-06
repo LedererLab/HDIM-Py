@@ -3009,19 +3009,32 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_char swig_types[0]
 #define SWIGTYPE_p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[1]
 #define SWIGTYPE_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t swig_types[2]
-#define SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[3]
-#define SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t swig_types[4]
-#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[5]
-#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t swig_types[6]
-#define SWIGTYPE_p_hdim__X_FOST_double_t swig_types[7]
-#define SWIGTYPE_p_hdim__internal__AbstractSolverT_double_t swig_types[8]
-#define SWIGTYPE_p_hdim__internal__BaseSolverT_double_t swig_types[9]
-#define SWIGTYPE_p_hdim__internal__ScreeningSolverT_double_t swig_types[10]
-#define SWIGTYPE_p_hdim__internal__SolverT_double_t swig_types[11]
-#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[12]
-#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t swig_types[13]
-static swig_type_info *swig_types[15];
-static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
+#define SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t swig_types[3]
+#define SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t swig_types[4]
+#define SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[5]
+#define SWIGTYPE_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t swig_types[6]
+#define SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t swig_types[7]
+#define SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t swig_types[8]
+#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[9]
+#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t swig_types[10]
+#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t swig_types[11]
+#define SWIGTYPE_p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t swig_types[12]
+#define SWIGTYPE_p_hdim__X_FOST_double_t swig_types[13]
+#define SWIGTYPE_p_hdim__X_FOST_float_t swig_types[14]
+#define SWIGTYPE_p_hdim__internal__AbstractSolverT_double_t swig_types[15]
+#define SWIGTYPE_p_hdim__internal__AbstractSolverT_float_t swig_types[16]
+#define SWIGTYPE_p_hdim__internal__BaseSolverT_double_t swig_types[17]
+#define SWIGTYPE_p_hdim__internal__BaseSolverT_float_t swig_types[18]
+#define SWIGTYPE_p_hdim__internal__ScreeningSolverT_double_t swig_types[19]
+#define SWIGTYPE_p_hdim__internal__ScreeningSolverT_float_t swig_types[20]
+#define SWIGTYPE_p_hdim__internal__SolverT_double_t swig_types[21]
+#define SWIGTYPE_p_hdim__internal__SolverT_float_t swig_types[22]
+#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t swig_types[23]
+#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t swig_types[24]
+#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t swig_types[25]
+#define SWIGTYPE_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t swig_types[26]
+static swig_type_info *swig_types[28];
+static swig_module_info swig_module = {swig_types, 27, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3791,6 +3804,33 @@ SWIGINTERNINLINE PyObject*
   template<> int NumPyType<int>() {return NPY_INT;};
 
 
+#include <float.h>
+
+
+#include <math.h>
+
+
+/* Getting isfinite working pre C99 across multiple platforms is non-trivial. Users can provide SWIG_isfinite on older platforms. */
+#ifndef SWIG_isfinite
+# if defined(isfinite)
+#  define SWIG_isfinite(X) (isfinite(X))
+# elif defined(_MSC_VER)
+#  define SWIG_isfinite(X) (_finite(X))
+# elif defined(__sun) && defined(__SVR4)
+#  include <ieeefp.h>
+#  define SWIG_isfinite(X) (finite(X))
+# endif
+#endif
+
+
+/* Accept infinite as a valid float value unless we are unable to check if a value is finite */
+#ifdef SWIG_isfinite
+# define SWIG_Float_Overflow_Check(X) ((X < -FLT_MAX || X > FLT_MAX) && SWIG_isfinite(X))
+#else
+# define SWIG_Float_Overflow_Check(X) ((X < -FLT_MAX || X > FLT_MAX))
+#endif
+
+
 SWIGINTERN int
 SWIG_AsVal_double (PyObject *obj, double *val)
 {
@@ -3837,6 +3877,22 @@ SWIG_AsVal_double (PyObject *obj, double *val)
 }
 
 
+SWIGINTERN int
+SWIG_AsVal_float (PyObject * obj, float *val)
+{
+  double v;
+  int res = SWIG_AsVal_double (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if (SWIG_Float_Overflow_Check(v)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< float >(v);
+    }
+  }  
+  return res;
+}
+
+
 #include <limits.h>
 #if !defined(SWIG_NO_LLONG_MAX)
 # if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
@@ -3845,12 +3901,6 @@ SWIG_AsVal_double (PyObject *obj, double *val)
 #   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
 # endif
 #endif
-
-
-#include <float.h>
-
-
-#include <math.h>
 
 
 SWIGINTERNINLINE int
@@ -4009,6 +4059,13 @@ SWIG_AsVal_int (PyObject * obj, int *val)
   #define SWIG_From_double   PyFloat_FromDouble 
 
 
+SWIGINTERNINLINE PyObject *
+SWIG_From_float  (float value)
+{    
+  return SWIG_From_double  (value);
+}
+
+
 SWIGINTERNINLINE PyObject*
   SWIG_From_unsigned_SS_int  (unsigned int value)
 {
@@ -4083,6 +4140,1829 @@ SWIGINTERN PyObject *SolverType_screen_cd_swigconstant(PyObject *SWIGUNUSEDPARM(
   return SWIG_Py_Void();
 }
 
+
+SWIGINTERN PyObject *_wrap_delete_float32_baseSolver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::BaseSolver< float > *arg1 = (hdim::internal::BaseSolver< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_baseSolver",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__BaseSolverT_float_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_baseSolver" "', argument " "1"" of type '" "hdim::internal::BaseSolver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::BaseSolver< float > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_baseSolver___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::BaseSolver< float > *arg1 = (hdim::internal::BaseSolver< float > *) 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg4 = 0 ;
+  float arg5 ;
+  unsigned int arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp4 ;
+  float val5 ;
+  int ecode5 = 0 ;
+  unsigned int val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:float32_baseSolver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__BaseSolverT_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_baseSolver___call__" "', argument " "1"" of type '" "hdim::internal::BaseSolver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::BaseSolver< float > * >(argp1);
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp4, obj3))
+    SWIG_fail;
+    arg4 = &temp4;
+  }
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "float32_baseSolver___call__" "', argument " "5"" of type '" "float""'");
+  } 
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_unsigned_SS_int(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "float32_baseSolver___call__" "', argument " "6"" of type '" "unsigned int""'");
+  } 
+  arg6 = static_cast< unsigned int >(val6);
+  result = (arg1)->operator ()((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_baseSolver___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::BaseSolver< float > *arg1 = (hdim::internal::BaseSolver< float > *) 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg4 = 0 ;
+  float arg5 ;
+  float arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp4 ;
+  float val5 ;
+  int ecode5 = 0 ;
+  float val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:float32_baseSolver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__BaseSolverT_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_baseSolver___call__" "', argument " "1"" of type '" "hdim::internal::BaseSolver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::BaseSolver< float > * >(argp1);
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp4, obj3))
+    SWIG_fail;
+    arg4 = &temp4;
+  }
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "float32_baseSolver___call__" "', argument " "5"" of type '" "float""'");
+  } 
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_float(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "float32_baseSolver___call__" "', argument " "6"" of type '" "float""'");
+  } 
+  arg6 = static_cast< float >(val6);
+  result = (arg1)->operator ()((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_baseSolver___call__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[7] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 6) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 6) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__BaseSolverT_float_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        _v = is_array(argv[1]);
+      }
+      if (_v) {
+        {
+          _v = is_array(argv[2]);
+        }
+        if (_v) {
+          {
+            _v = is_array(argv[3]);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_float(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              {
+                int res = SWIG_AsVal_unsigned_SS_int(argv[5], NULL);
+                _v = SWIG_CheckState(res);
+              }
+              if (_v) {
+                return _wrap_float32_baseSolver___call____SWIG_0(self, args);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__BaseSolverT_float_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        _v = is_array(argv[1]);
+      }
+      if (_v) {
+        {
+          _v = is_array(argv[2]);
+        }
+        if (_v) {
+          {
+            _v = is_array(argv[3]);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_float(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              {
+                int res = SWIG_AsVal_float(argv[5], NULL);
+                _v = SWIG_CheckState(res);
+              }
+              if (_v) {
+                return _wrap_float32_baseSolver___call____SWIG_1(self, args);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'float32_baseSolver___call__'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    hdim::internal::BaseSolver< float >::operator ()(Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,float,unsigned int)\n"
+    "    hdim::internal::BaseSolver< float >::operator ()(Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,float,float)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *float32_baseSolver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__BaseSolverT_float_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_delete_float32_abstractSolver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::AbstractSolver< float > *arg1 = (hdim::internal::AbstractSolver< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_abstractSolver",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__AbstractSolverT_float_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_abstractSolver" "', argument " "1"" of type '" "hdim::internal::AbstractSolver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::AbstractSolver< float > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_abstractSolver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__AbstractSolverT_float_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_delete_float32_solver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::Solver< float > *arg1 = (hdim::internal::Solver< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_solver",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__SolverT_float_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_solver" "', argument " "1"" of type '" "hdim::internal::Solver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::Solver< float > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_solver___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::Solver< float > *arg1 = (hdim::internal::Solver< float > *) 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg4 = 0 ;
+  float arg5 ;
+  unsigned int arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp4 ;
+  float val5 ;
+  int ecode5 = 0 ;
+  unsigned int val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:float32_solver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__SolverT_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_solver___call__" "', argument " "1"" of type '" "hdim::internal::Solver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::Solver< float > * >(argp1);
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp4, obj3))
+    SWIG_fail;
+    arg4 = &temp4;
+  }
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "float32_solver___call__" "', argument " "5"" of type '" "float""'");
+  } 
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_unsigned_SS_int(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "float32_solver___call__" "', argument " "6"" of type '" "unsigned int""'");
+  } 
+  arg6 = static_cast< unsigned int >(val6);
+  result = (arg1)->operator ()((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_solver___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::Solver< float > *arg1 = (hdim::internal::Solver< float > *) 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg4 = 0 ;
+  float arg5 ;
+  float arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp4 ;
+  float val5 ;
+  int ecode5 = 0 ;
+  float val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:float32_solver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__SolverT_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_solver___call__" "', argument " "1"" of type '" "hdim::internal::Solver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::Solver< float > * >(argp1);
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp4, obj3))
+    SWIG_fail;
+    arg4 = &temp4;
+  }
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "float32_solver___call__" "', argument " "5"" of type '" "float""'");
+  } 
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_float(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "float32_solver___call__" "', argument " "6"" of type '" "float""'");
+  } 
+  arg6 = static_cast< float >(val6);
+  result = (arg1)->operator ()((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_solver___call__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[7] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 6) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 6) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__SolverT_float_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        _v = is_array(argv[1]);
+      }
+      if (_v) {
+        {
+          _v = is_array(argv[2]);
+        }
+        if (_v) {
+          {
+            _v = is_array(argv[3]);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_float(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              {
+                int res = SWIG_AsVal_unsigned_SS_int(argv[5], NULL);
+                _v = SWIG_CheckState(res);
+              }
+              if (_v) {
+                return _wrap_float32_solver___call____SWIG_0(self, args);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__SolverT_float_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        _v = is_array(argv[1]);
+      }
+      if (_v) {
+        {
+          _v = is_array(argv[2]);
+        }
+        if (_v) {
+          {
+            _v = is_array(argv[3]);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_float(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              {
+                int res = SWIG_AsVal_float(argv[5], NULL);
+                _v = SWIG_CheckState(res);
+              }
+              if (_v) {
+                return _wrap_float32_solver___call____SWIG_1(self, args);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'float32_solver___call__'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    hdim::internal::Solver< float >::operator ()(Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,float,unsigned int)\n"
+    "    hdim::internal::Solver< float >::operator ()(Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,float,float)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *float32_solver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__SolverT_float_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_delete_float32_SR_solver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::ScreeningSolver< float > *arg1 = (hdim::internal::ScreeningSolver< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_SR_solver",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__ScreeningSolverT_float_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_SR_solver" "', argument " "1"" of type '" "hdim::internal::ScreeningSolver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::ScreeningSolver< float > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_SR_solver___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::ScreeningSolver< float > *arg1 = (hdim::internal::ScreeningSolver< float > *) 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg4 = 0 ;
+  float arg5 ;
+  unsigned int arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp4 ;
+  float val5 ;
+  int ecode5 = 0 ;
+  unsigned int val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:float32_SR_solver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__ScreeningSolverT_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_SR_solver___call__" "', argument " "1"" of type '" "hdim::internal::ScreeningSolver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::ScreeningSolver< float > * >(argp1);
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp4, obj3))
+    SWIG_fail;
+    arg4 = &temp4;
+  }
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "float32_SR_solver___call__" "', argument " "5"" of type '" "float""'");
+  } 
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_unsigned_SS_int(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "float32_SR_solver___call__" "', argument " "6"" of type '" "unsigned int""'");
+  } 
+  arg6 = static_cast< unsigned int >(val6);
+  result = (arg1)->operator ()((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_SR_solver___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::ScreeningSolver< float > *arg1 = (hdim::internal::ScreeningSolver< float > *) 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg4 = 0 ;
+  float arg5 ;
+  float arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp4 ;
+  float val5 ;
+  int ecode5 = 0 ;
+  float val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:float32_SR_solver___call__",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__ScreeningSolverT_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_SR_solver___call__" "', argument " "1"" of type '" "hdim::internal::ScreeningSolver< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::ScreeningSolver< float > * >(argp1);
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp4, obj3))
+    SWIG_fail;
+    arg4 = &temp4;
+  }
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "float32_SR_solver___call__" "', argument " "5"" of type '" "float""'");
+  } 
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_float(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "float32_SR_solver___call__" "', argument " "6"" of type '" "float""'");
+  } 
+  arg6 = static_cast< float >(val6);
+  result = (arg1)->operator ()((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg4,arg5,arg6);
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_SR_solver___call__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[7] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 6) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 6) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__ScreeningSolverT_float_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        _v = is_array(argv[1]);
+      }
+      if (_v) {
+        {
+          _v = is_array(argv[2]);
+        }
+        if (_v) {
+          {
+            _v = is_array(argv[3]);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_float(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              {
+                int res = SWIG_AsVal_unsigned_SS_int(argv[5], NULL);
+                _v = SWIG_CheckState(res);
+              }
+              if (_v) {
+                return _wrap_float32_SR_solver___call____SWIG_0(self, args);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__internal__ScreeningSolverT_float_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        _v = is_array(argv[1]);
+      }
+      if (_v) {
+        {
+          _v = is_array(argv[2]);
+        }
+        if (_v) {
+          {
+            _v = is_array(argv[3]);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_float(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              {
+                int res = SWIG_AsVal_float(argv[5], NULL);
+                _v = SWIG_CheckState(res);
+              }
+              if (_v) {
+                return _wrap_float32_SR_solver___call____SWIG_1(self, args);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'float32_SR_solver___call__'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    hdim::internal::ScreeningSolver< float >::operator ()(Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,float,unsigned int)\n"
+    "    hdim::internal::ScreeningSolver< float >::operator ()(Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,float,float)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *float32_SR_solver_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__ScreeningSolverT_float_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_delete_float32_SGD(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *arg1 = (hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_SGD",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_SGD" "', argument " "1"" of type '" "hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_SGD_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_delete_float32_SGD_SR(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *arg1 = (hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_SGD_SR",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_SGD_SR" "', argument " "1"" of type '" "hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_SGD_SR_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_float32_ista__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  float arg1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  hdim::ISTA< float,hdim::internal::Solver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_float32_ista",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_float(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_float32_ista" "', argument " "1"" of type '" "float""'");
+  } 
+  arg1 = static_cast< float >(val1);
+  result = (hdim::ISTA< float,hdim::internal::Solver< float > > *)new hdim::ISTA< float,hdim::internal::Solver< float > >(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_float32_ista__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::ISTA< float,hdim::internal::Solver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_float32_ista")) SWIG_fail;
+  result = (hdim::ISTA< float,hdim::internal::Solver< float > > *)new hdim::ISTA< float,hdim::internal::Solver< float > >();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_float32_ista(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[2] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 1) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 0) {
+    return _wrap_new_float32_ista__SWIG_1(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      int res = SWIG_AsVal_float(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      return _wrap_new_float32_ista__SWIG_0(self, args);
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_float32_ista'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    hdim::ISTA< float,hdim::internal::Solver< float > >::ISTA(float)\n"
+    "    hdim::ISTA< float,hdim::internal::Solver< float > >::ISTA()\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_float32_ista(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::ISTA< float,hdim::internal::Solver< float > > *arg1 = (hdim::ISTA< float,hdim::internal::Solver< float > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_ista",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_ista" "', argument " "1"" of type '" "hdim::ISTA< float,hdim::internal::Solver< float > > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::ISTA< float,hdim::internal::Solver< float > > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_ista_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_float32_screened_ista__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  float arg1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_float32_screened_ista",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_float(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_float32_screened_ista" "', argument " "1"" of type '" "float""'");
+  } 
+  arg1 = static_cast< float >(val1);
+  result = (hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *)new hdim::ISTA< float,hdim::internal::ScreeningSolver< float > >(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_float32_screened_ista__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_float32_screened_ista")) SWIG_fail;
+  result = (hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *)new hdim::ISTA< float,hdim::internal::ScreeningSolver< float > >();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_float32_screened_ista(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[2] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 1) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 0) {
+    return _wrap_new_float32_screened_ista__SWIG_1(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      int res = SWIG_AsVal_float(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      return _wrap_new_float32_screened_ista__SWIG_0(self, args);
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_float32_screened_ista'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    hdim::ISTA< float,hdim::internal::ScreeningSolver< float > >::ISTA(float)\n"
+    "    hdim::ISTA< float,hdim::internal::ScreeningSolver< float > >::ISTA()\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_float32_screened_ista(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *arg1 = (hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_screened_ista",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_screened_ista" "', argument " "1"" of type '" "hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_screened_ista_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_float32_fista__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg1 = 0 ;
+  float arg2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp1 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  hdim::FISTA< float,hdim::internal::Solver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_float32_fista",&obj0,&obj1)) SWIG_fail;
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp1, obj0))
+    SWIG_fail;
+    arg1 = &temp1;
+  }
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_float32_fista" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  result = (hdim::FISTA< float,hdim::internal::Solver< float > > *)new hdim::FISTA< float,hdim::internal::Solver< float > >((Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg1,arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_float32_fista__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp1 ;
+  PyObject * obj0 = 0 ;
+  hdim::FISTA< float,hdim::internal::Solver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_float32_fista",&obj0)) SWIG_fail;
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp1, obj0))
+    SWIG_fail;
+    arg1 = &temp1;
+  }
+  result = (hdim::FISTA< float,hdim::internal::Solver< float > > *)new hdim::FISTA< float,hdim::internal::Solver< float > >((Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_float32_fista(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = is_array(argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_float32_fista__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = is_array(argv[0]);
+    }
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_new_float32_fista__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_float32_fista'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    hdim::FISTA< float,hdim::internal::Solver< float > >::FISTA(Eigen::Matrix< float,Eigen::Dynamic,1 > const &,float)\n"
+    "    hdim::FISTA< float,hdim::internal::Solver< float > >::FISTA(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_float32_fista(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::FISTA< float,hdim::internal::Solver< float > > *arg1 = (hdim::FISTA< float,hdim::internal::Solver< float > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_fista",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_fista" "', argument " "1"" of type '" "hdim::FISTA< float,hdim::internal::Solver< float > > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::FISTA< float,hdim::internal::Solver< float > > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_fista_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_float32_screened_fista__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg1 = 0 ;
+  float arg2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp1 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_float32_screened_fista",&obj0,&obj1)) SWIG_fail;
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp1, obj0))
+    SWIG_fail;
+    arg1 = &temp1;
+  }
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_float32_screened_fista" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  result = (hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *)new hdim::FISTA< float,hdim::internal::ScreeningSolver< float > >((Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg1,arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_float32_screened_fista__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp1 ;
+  PyObject * obj0 = 0 ;
+  hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_float32_screened_fista",&obj0)) SWIG_fail;
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp1, obj0))
+    SWIG_fail;
+    arg1 = &temp1;
+  }
+  result = (hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *)new hdim::FISTA< float,hdim::internal::ScreeningSolver< float > >((Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_float32_screened_fista(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = is_array(argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_float32_screened_fista__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = is_array(argv[0]);
+    }
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_new_float32_screened_fista__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_float32_screened_fista'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    hdim::FISTA< float,hdim::internal::ScreeningSolver< float > >::FISTA(Eigen::Matrix< float,Eigen::Dynamic,1 > const &,float)\n"
+    "    hdim::FISTA< float,hdim::internal::ScreeningSolver< float > >::FISTA(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_float32_screened_fista(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *arg1 = (hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_screened_fista",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_screened_fista" "', argument " "1"" of type '" "hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_screened_fista_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_float32_CD(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp1 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:new_float32_CD",&obj0,&obj1,&obj2)) SWIG_fail;
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp1, obj0))
+    SWIG_fail;
+    arg1 = &temp1;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  result = (hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *)new hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > >((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg1,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_float32_CD(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *arg1 = (hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_CD",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_CD" "', argument " "1"" of type '" "hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_CD_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_float32_CD_SR(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp1 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:new_float32_CD_SR",&obj0,&obj1,&obj2)) SWIG_fail;
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp1, obj0))
+    SWIG_fail;
+    arg1 = &temp1;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  result = (hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *)new hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > >((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg1,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_NEW |  0 );
+  
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_float32_CD_SR(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *arg1 = (hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_CD_SR",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_CD_SR" "', argument " "1"" of type '" "hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_CD_SR_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_float32_fos(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_float32_fos")) SWIG_fail;
+  result = (hdim::X_FOS< float > *)new hdim::X_FOS< float >();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_hdim__X_FOST_float_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_float32_fos(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_float32_fos",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_float32_fos" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos___call____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  hdim::SolverType arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:float32_fos___call__",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_fos___call__" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "float32_fos___call__" "', argument " "4"" of type '" "hdim::SolverType""'");
+  } 
+  arg4 = static_cast< hdim::SolverType >(val4);
+  (arg1)->operator ()((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3,arg4);
+  resultobj = SWIG_Py_Void();
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos___call____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > *arg2 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > temp2 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > temp3 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:float32_fos___call__",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_fos___call__" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&temp2, obj1))
+    SWIG_fail;
+    arg2 = &temp2;
+  }
+  {
+    // In: const&
+    if (!ConvertFromNumpyToEigenMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&temp3, obj2))
+    SWIG_fail;
+    arg3 = &temp3;
+  }
+  (arg1)->operator ()((Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &)*arg2,(Eigen::Matrix< float,Eigen::Dynamic,1 > const &)*arg3);
+  resultobj = SWIG_Py_Void();
+  
+  
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos___call__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[5] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 4) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__X_FOST_float_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        _v = is_array(argv[1]);
+      }
+      if (_v) {
+        {
+          _v = is_array(argv[2]);
+        }
+        if (_v) {
+          return _wrap_float32_fos___call____SWIG_1(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_hdim__X_FOST_float_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        _v = is_array(argv[1]);
+      }
+      if (_v) {
+        {
+          _v = is_array(argv[2]);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_float32_fos___call____SWIG_0(self, args);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'float32_fos___call__'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    hdim::X_FOS< float >::operator ()(Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &,hdim::SolverType)\n"
+    "    hdim::X_FOS< float >::operator ()(Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > const &,Eigen::Matrix< float,Eigen::Dynamic,1 > const &)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos_ReturnLambda(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:float32_fos_ReturnLambda",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_fos_ReturnLambda" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  result = (float)(arg1)->ReturnLambda();
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos_ReturnIntercept(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:float32_fos_ReturnIntercept",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_fos_ReturnIntercept" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  result = (float)(arg1)->ReturnIntercept();
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos_ReturnBetas(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,Eigen::Dynamic > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:float32_fos_ReturnBetas",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_fos_ReturnBetas" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  result = (arg1)->ReturnBetas();
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos_ReturnOptimIndex(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:float32_fos_ReturnOptimIndex",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_fos_ReturnOptimIndex" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  result = (unsigned int)(arg1)->ReturnOptimIndex();
+  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos_ReturnCoefficients(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Eigen::Matrix< float,Eigen::Dynamic,1 > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:float32_fos_ReturnCoefficients",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_fos_ReturnCoefficients" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  result = (arg1)->ReturnCoefficients();
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<float,Eigen::Dynamic,1> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_float32_fos_ReturnSupport(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  hdim::X_FOS< float > *arg1 = (hdim::X_FOS< float > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Eigen::Matrix< int,Eigen::Dynamic,1 > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:float32_fos_ReturnSupport",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_hdim__X_FOST_float_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float32_fos_ReturnSupport" "', argument " "1"" of type '" "hdim::X_FOS< float > *""'"); 
+  }
+  arg1 = reinterpret_cast< hdim::X_FOS< float > * >(argp1);
+  result = (arg1)->ReturnSupport();
+  {
+    if (!ConvertFromEigenToNumPyMatrix<Eigen::Matrix<int,Eigen::Dynamic,1> >(&resultobj, &result))
+    SWIG_fail;
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *float32_fos_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_hdim__X_FOST_float_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
 
 SWIGINTERN PyObject *_wrap_delete_baseSolver(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
@@ -5915,6 +7795,49 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"SolverType_screen_fista_swigconstant", SolverType_screen_fista_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SolverType_cd_swigconstant", SolverType_cd_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SolverType_screen_cd_swigconstant", SolverType_screen_cd_swigconstant, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_baseSolver", _wrap_delete_float32_baseSolver, METH_VARARGS, NULL},
+	 { (char *)"float32_baseSolver___call__", _wrap_float32_baseSolver___call__, METH_VARARGS, NULL},
+	 { (char *)"float32_baseSolver_swigregister", float32_baseSolver_swigregister, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_abstractSolver", _wrap_delete_float32_abstractSolver, METH_VARARGS, NULL},
+	 { (char *)"float32_abstractSolver_swigregister", float32_abstractSolver_swigregister, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_solver", _wrap_delete_float32_solver, METH_VARARGS, NULL},
+	 { (char *)"float32_solver___call__", _wrap_float32_solver___call__, METH_VARARGS, NULL},
+	 { (char *)"float32_solver_swigregister", float32_solver_swigregister, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_SR_solver", _wrap_delete_float32_SR_solver, METH_VARARGS, NULL},
+	 { (char *)"float32_SR_solver___call__", _wrap_float32_SR_solver___call__, METH_VARARGS, NULL},
+	 { (char *)"float32_SR_solver_swigregister", float32_SR_solver_swigregister, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_SGD", _wrap_delete_float32_SGD, METH_VARARGS, NULL},
+	 { (char *)"float32_SGD_swigregister", float32_SGD_swigregister, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_SGD_SR", _wrap_delete_float32_SGD_SR, METH_VARARGS, NULL},
+	 { (char *)"float32_SGD_SR_swigregister", float32_SGD_SR_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_float32_ista", _wrap_new_float32_ista, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_ista", _wrap_delete_float32_ista, METH_VARARGS, NULL},
+	 { (char *)"float32_ista_swigregister", float32_ista_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_float32_screened_ista", _wrap_new_float32_screened_ista, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_screened_ista", _wrap_delete_float32_screened_ista, METH_VARARGS, NULL},
+	 { (char *)"float32_screened_ista_swigregister", float32_screened_ista_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_float32_fista", _wrap_new_float32_fista, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_fista", _wrap_delete_float32_fista, METH_VARARGS, NULL},
+	 { (char *)"float32_fista_swigregister", float32_fista_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_float32_screened_fista", _wrap_new_float32_screened_fista, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_screened_fista", _wrap_delete_float32_screened_fista, METH_VARARGS, NULL},
+	 { (char *)"float32_screened_fista_swigregister", float32_screened_fista_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_float32_CD", _wrap_new_float32_CD, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_CD", _wrap_delete_float32_CD, METH_VARARGS, NULL},
+	 { (char *)"float32_CD_swigregister", float32_CD_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_float32_CD_SR", _wrap_new_float32_CD_SR, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_CD_SR", _wrap_delete_float32_CD_SR, METH_VARARGS, NULL},
+	 { (char *)"float32_CD_SR_swigregister", float32_CD_SR_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_float32_fos", _wrap_new_float32_fos, METH_VARARGS, NULL},
+	 { (char *)"delete_float32_fos", _wrap_delete_float32_fos, METH_VARARGS, NULL},
+	 { (char *)"float32_fos___call__", _wrap_float32_fos___call__, METH_VARARGS, NULL},
+	 { (char *)"float32_fos_ReturnLambda", _wrap_float32_fos_ReturnLambda, METH_VARARGS, NULL},
+	 { (char *)"float32_fos_ReturnIntercept", _wrap_float32_fos_ReturnIntercept, METH_VARARGS, NULL},
+	 { (char *)"float32_fos_ReturnBetas", _wrap_float32_fos_ReturnBetas, METH_VARARGS, NULL},
+	 { (char *)"float32_fos_ReturnOptimIndex", _wrap_float32_fos_ReturnOptimIndex, METH_VARARGS, NULL},
+	 { (char *)"float32_fos_ReturnCoefficients", _wrap_float32_fos_ReturnCoefficients, METH_VARARGS, NULL},
+	 { (char *)"float32_fos_ReturnSupport", _wrap_float32_fos_ReturnSupport, METH_VARARGS, NULL},
+	 { (char *)"float32_fos_swigregister", float32_fos_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_baseSolver", _wrap_delete_baseSolver, METH_VARARGS, NULL},
 	 { (char *)"baseSolver___call__", _wrap_baseSolver___call__, METH_VARARGS, NULL},
 	 { (char *)"baseSolver_swigregister", baseSolver_swigregister, METH_VARARGS, NULL},
@@ -5964,6 +7887,93 @@ static PyMethodDef SwigMethods[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__ScreeningSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::ScreeningSolver< float > *) (hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) ((hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__ScreeningSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::ScreeningSolver< float > *)  ((hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__ScreeningSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::ScreeningSolver< float > *) (hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) ((hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__ScreeningSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::ScreeningSolver< float > *)  ((hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::Solver< float > *)  ((hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::Solver< float > *) (hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) ((hdim::FISTA< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::Solver< float > *) (hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) ((hdim::ISTA< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::Solver< float > *)  ((hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *) (hdim::internal::ScreeningSolver< float > *)(hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) ((hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *) (hdim::internal::Solver< float > *) ((hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *) (hdim::internal::ScreeningSolver< float > *) ((hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__internal__SolverT_float_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *)  ((hdim::internal::Solver< float > *) x));
+}
+static void *_p_hdim__internal__ScreeningSolverT_float_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *)  ((hdim::internal::ScreeningSolver< float > *) x));
+}
+static void *_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *) (hdim::internal::Solver< float > *)(hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) ((hdim::FISTA< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *) (hdim::internal::Solver< float > *)(hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) ((hdim::ISTA< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *) (hdim::internal::ScreeningSolver< float > *)(hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) ((hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *) (hdim::internal::Solver< float > *) ((hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::AbstractSolver< float > *) (hdim::internal::ScreeningSolver< float > *) ((hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *)(hdim::internal::ScreeningSolver< float > *)(hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) ((hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *)(hdim::internal::Solver< float > *) ((hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *)(hdim::internal::ScreeningSolver< float > *) ((hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__internal__AbstractSolverT_float_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *)  ((hdim::internal::AbstractSolver< float > *) x));
+}
+static void *_p_hdim__internal__SolverT_float_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *) ((hdim::internal::Solver< float > *) x));
+}
+static void *_p_hdim__internal__ScreeningSolverT_float_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *) ((hdim::internal::ScreeningSolver< float > *) x));
+}
+static void *_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *)(hdim::internal::Solver< float > *)(hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) ((hdim::FISTA< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *)(hdim::internal::Solver< float > *)(hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) ((hdim::ISTA< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *)(hdim::internal::ScreeningSolver< float > *)(hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) ((hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *)(hdim::internal::Solver< float > *) ((hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::BaseSolver< float > *) (hdim::internal::AbstractSolver< float > *)(hdim::internal::ScreeningSolver< float > *) ((hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
 static void *_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::ScreeningSolver< double > *) (hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *) ((hdim::ISTA< double,hdim::internal::ScreeningSolver< double > > *) x));
 }
@@ -6063,68 +8073,132 @@ static void *_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim_
 static void *_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *)  ((hdim::ISTA< double,hdim::internal::Solver< double > > *) x));
 }
+static void *_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *)  ((hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *)  ((hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *) x));
+}
+static void *_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *)  ((hdim::FISTA< float,hdim::internal::Solver< float > > *) x));
+}
+static void *_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *)  ((hdim::ISTA< float,hdim::internal::Solver< float > > *) x));
+}
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t = {"_p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t", "hdim::FISTA< double,hdim::internal::ScreeningSolver< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t = {"_p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t", "hdim::FISTA< double,hdim::internal::Solver< double > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t = {"_p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t", "hdim::FISTA< float,hdim::internal::ScreeningSolver< float > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t = {"_p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t", "hdim::FISTA< float,hdim::internal::Solver< float > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t = {"_p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t", "hdim::ISTA< double,hdim::internal::ScreeningSolver< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t = {"_p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t", "hdim::ISTA< double,hdim::internal::Solver< double > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t = {"_p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t", "hdim::ISTA< float,hdim::internal::ScreeningSolver< float > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t = {"_p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t", "hdim::ISTA< float,hdim::internal::Solver< float > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t = {"_p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t", "hdim::LazyCoordinateDescent< double,hdim::internal::ScreeningSolver< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t = {"_p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t", "hdim::LazyCoordinateDescent< double,hdim::internal::Solver< double > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t = {"_p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t", "hdim::LazyCoordinateDescent< float,hdim::internal::ScreeningSolver< float > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t = {"_p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t", "hdim::LazyCoordinateDescent< float,hdim::internal::Solver< float > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__X_FOST_double_t = {"_p_hdim__X_FOST_double_t", "hdim::X_FOS< double > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__X_FOST_float_t = {"_p_hdim__X_FOST_float_t", "hdim::X_FOS< float > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__AbstractSolverT_double_t = {"_p_hdim__internal__AbstractSolverT_double_t", "hdim::internal::AbstractSolver< double > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__internal__AbstractSolverT_float_t = {"_p_hdim__internal__AbstractSolverT_float_t", "hdim::internal::AbstractSolver< float > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__BaseSolverT_double_t = {"_p_hdim__internal__BaseSolverT_double_t", "hdim::internal::BaseSolver< double > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__internal__BaseSolverT_float_t = {"_p_hdim__internal__BaseSolverT_float_t", "hdim::internal::BaseSolver< float > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__ScreeningSolverT_double_t = {"_p_hdim__internal__ScreeningSolverT_double_t", "hdim::internal::ScreeningSolver< double > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__internal__ScreeningSolverT_float_t = {"_p_hdim__internal__ScreeningSolverT_float_t", "hdim::internal::ScreeningSolver< float > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__SolverT_double_t = {"_p_hdim__internal__SolverT_double_t", "hdim::internal::Solver< double > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__internal__SolverT_float_t = {"_p_hdim__internal__SolverT_float_t", "hdim::internal::Solver< float > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t = {"_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t", "hdim::internal::SubGradientSolver< double,hdim::internal::ScreeningSolver< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t = {"_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t", "hdim::internal::SubGradientSolver< double,hdim::internal::Solver< double > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t = {"_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t", "hdim::internal::SubGradientSolver< float,hdim::internal::ScreeningSolver< float > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t = {"_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t", "hdim::internal::SubGradientSolver< float,hdim::internal::Solver< float > > *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
   &_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t,
   &_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t,
+  &_swigt__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t,
+  &_swigt__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t,
   &_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t,
   &_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t,
+  &_swigt__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t,
+  &_swigt__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t,
   &_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t,
   &_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t,
+  &_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t,
+  &_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t,
   &_swigt__p_hdim__X_FOST_double_t,
+  &_swigt__p_hdim__X_FOST_float_t,
   &_swigt__p_hdim__internal__AbstractSolverT_double_t,
+  &_swigt__p_hdim__internal__AbstractSolverT_float_t,
   &_swigt__p_hdim__internal__BaseSolverT_double_t,
+  &_swigt__p_hdim__internal__BaseSolverT_float_t,
   &_swigt__p_hdim__internal__ScreeningSolverT_double_t,
+  &_swigt__p_hdim__internal__ScreeningSolverT_float_t,
   &_swigt__p_hdim__internal__SolverT_double_t,
+  &_swigt__p_hdim__internal__SolverT_float_t,
   &_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t,
   &_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t,
+  &_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t,
+  &_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t,
 };
 
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t[] = {  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t[] = {  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t[] = {  {&_swigt__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t[] = {  {&_swigt__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t[] = {  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t[] = {  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t[] = {  {&_swigt__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t[] = {  {&_swigt__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t[] = {  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t[] = {  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t[] = {  {&_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t[] = {  {&_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__X_FOST_double_t[] = {  {&_swigt__p_hdim__X_FOST_double_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__X_FOST_float_t[] = {  {&_swigt__p_hdim__X_FOST_float_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__AbstractSolverT_double_t[] = {  {&_swigt__p_hdim__internal__AbstractSolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__SolverT_double_t, _p_hdim__internal__SolverT_double_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__ScreeningSolverT_double_t, _p_hdim__internal__ScreeningSolverT_double_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__AbstractSolverT_double_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__internal__AbstractSolverT_float_t[] = {  {&_swigt__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, _p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t, _p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, _p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t, _p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__AbstractSolverT_float_t, 0, 0, 0},  {&_swigt__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SolverT_float_t, _p_hdim__internal__SolverT_float_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__ScreeningSolverT_float_t, _p_hdim__internal__ScreeningSolverT_float_tTo_p_hdim__internal__AbstractSolverT_float_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__BaseSolverT_double_t[] = {  {&_swigt__p_hdim__internal__BaseSolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__AbstractSolverT_double_t, _p_hdim__internal__AbstractSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SolverT_double_t, _p_hdim__internal__SolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__ScreeningSolverT_double_t, _p_hdim__internal__ScreeningSolverT_double_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__BaseSolverT_double_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__internal__BaseSolverT_float_t[] = {  {&_swigt__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, _p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t, _p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, _p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t, _p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__BaseSolverT_float_t, 0, 0, 0},  {&_swigt__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__AbstractSolverT_float_t, _p_hdim__internal__AbstractSolverT_float_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SolverT_float_t, _p_hdim__internal__SolverT_float_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__ScreeningSolverT_float_t, _p_hdim__internal__ScreeningSolverT_float_tTo_p_hdim__internal__BaseSolverT_float_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__ScreeningSolverT_double_t[] = {  {&_swigt__p_hdim__internal__ScreeningSolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__ScreeningSolverT_double_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__internal__ScreeningSolverT_float_t[] = {  {&_swigt__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__ScreeningSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__ScreeningSolverT_float_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__ScreeningSolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__ScreeningSolverT_float_t, 0, 0, 0},  {&_swigt__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__ScreeningSolverT_float_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__SolverT_double_t[] = {  {&_swigt__p_hdim__internal__SolverT_double_t, 0, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, _p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t, _p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SolverT_double_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__internal__SolverT_float_t[] = {  {&_swigt__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, _p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t, _p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SolverT_float_t, 0, 0},  {&_swigt__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, _p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SolverT_float_t, 0, 0},  {&_swigt__p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t, _p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SolverT_float_t, 0, 0},  {&_swigt__p_hdim__internal__SolverT_float_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t[] = {  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_tTo_p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t[] = {  {&_swigt__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, 0, 0, 0},  {&_swigt__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, 0, 0},  {&_swigt__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t, _p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_tTo_p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t[] = {  {&_swigt__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t, 0, 0, 0},  {&_swigt__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t, _p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_tTo_p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t[] = {  {&_swigt__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t, _p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t, 0, 0},  {&_swigt__p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t, 0, 0, 0},  {&_swigt__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t, _p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_tTo_p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_char,
   _swigc__p_hdim__FISTAT_double_hdim__internal__ScreeningSolverT_double_t_t,
   _swigc__p_hdim__FISTAT_double_hdim__internal__SolverT_double_t_t,
+  _swigc__p_hdim__FISTAT_float_hdim__internal__ScreeningSolverT_float_t_t,
+  _swigc__p_hdim__FISTAT_float_hdim__internal__SolverT_float_t_t,
   _swigc__p_hdim__ISTAT_double_hdim__internal__ScreeningSolverT_double_t_t,
   _swigc__p_hdim__ISTAT_double_hdim__internal__SolverT_double_t_t,
+  _swigc__p_hdim__ISTAT_float_hdim__internal__ScreeningSolverT_float_t_t,
+  _swigc__p_hdim__ISTAT_float_hdim__internal__SolverT_float_t_t,
   _swigc__p_hdim__LazyCoordinateDescentT_double_hdim__internal__ScreeningSolverT_double_t_t,
   _swigc__p_hdim__LazyCoordinateDescentT_double_hdim__internal__SolverT_double_t_t,
+  _swigc__p_hdim__LazyCoordinateDescentT_float_hdim__internal__ScreeningSolverT_float_t_t,
+  _swigc__p_hdim__LazyCoordinateDescentT_float_hdim__internal__SolverT_float_t_t,
   _swigc__p_hdim__X_FOST_double_t,
+  _swigc__p_hdim__X_FOST_float_t,
   _swigc__p_hdim__internal__AbstractSolverT_double_t,
+  _swigc__p_hdim__internal__AbstractSolverT_float_t,
   _swigc__p_hdim__internal__BaseSolverT_double_t,
+  _swigc__p_hdim__internal__BaseSolverT_float_t,
   _swigc__p_hdim__internal__ScreeningSolverT_double_t,
+  _swigc__p_hdim__internal__ScreeningSolverT_float_t,
   _swigc__p_hdim__internal__SolverT_double_t,
+  _swigc__p_hdim__internal__SolverT_float_t,
   _swigc__p_hdim__internal__SubGradientSolverT_double_hdim__internal__ScreeningSolverT_double_t_t,
   _swigc__p_hdim__internal__SubGradientSolverT_double_hdim__internal__SolverT_double_t_t,
+  _swigc__p_hdim__internal__SubGradientSolverT_float_hdim__internal__ScreeningSolverT_float_t_t,
+  _swigc__p_hdim__internal__SubGradientSolverT_float_hdim__internal__SolverT_float_t_t,
 };
 
 

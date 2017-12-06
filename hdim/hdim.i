@@ -171,6 +171,31 @@ class LazyCoordinateDescent : public Base {
 
 };
 
+// Single precision versions of functions
+
+%template(float32_baseSolver) hdim::internal::BaseSolver<float>;
+%template(float32_abstractSolver) hdim::internal::AbstractSolver<float>;
+%template(float32_solver) hdim::internal::Solver<float>;
+%template(float32_SR_solver) hdim::internal::ScreeningSolver<float>;
+
+%template(float32_SGD) hdim::internal::SubGradientSolver<float,hdim::internal::Solver<float>>;
+%template(float32_SGD_SR) hdim::internal::SubGradientSolver<float,hdim::internal::ScreeningSolver<float>>;
+
+%template(float32_ista) hdim::ISTA<float,hdim::internal::Solver<float>>;
+%template(float32_screened_ista) hdim::ISTA<float,hdim::internal::ScreeningSolver<float>>;
+
+%template(float32_fista) hdim::FISTA<float,hdim::internal::Solver<float>>;
+%template(float32_screened_fista) hdim::FISTA<float,hdim::internal::ScreeningSolver<float>>;
+
+%template(float32_CD) hdim::LazyCoordinateDescent<float,hdim::internal::Solver<float>>;
+%template(float32_CD_SR) hdim::LazyCoordinateDescent<float,hdim::internal::ScreeningSolver<float>>;
+
+%template(float32_fos) hdim::X_FOS<float>;
+
+// Double precision versions of functions
+// These do not have a prefix since it is assumed that they will be the primary
+// functions end users will want to use.
+
 %template(baseSolver) hdim::internal::BaseSolver<double>;
 %template(abstractSolver) hdim::internal::AbstractSolver<double>;
 %template(solver) hdim::internal::Solver<double>;
