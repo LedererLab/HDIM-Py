@@ -16,6 +16,7 @@ This package is a Python wrapper over the original [C++ implementation of HDIM](
 This package requires that the [Eigen 3](http://eigen.tuxfamily.org/index.php)
 C++ linear algebra package be installed on the target system. Note that the root
 directory for Eigen 3, labeled `eigen3`, should be located under `/usr/include/`.
+You will also need a version of `numpy` with development headers.
 
 ## Supported Platforms
 
