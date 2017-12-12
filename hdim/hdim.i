@@ -9,7 +9,6 @@
 #include "../src/Solvers/SubGradientDescent/ISTA/ista.hpp"
 #include "../src/Solvers/SubGradientDescent/FISTA/fista.hpp"
 #include "../src/Solvers/CoordinateDescent/coordinate_descent.hpp"
-#include "../src/Solvers/CoordinateDescent/coordinatedescentwithscreen.hpp"
 #include "../src/FOS/x_fos.hpp"
 %}
 
@@ -36,7 +35,6 @@
 %include "../src/Solvers/SubGradientDescent/FISTA/fista.hpp"
 
 %include "../src/Solvers/CoordinateDescent/coordinate_descent.hpp"
-%include "../src/Solvers/CoordinateDescent/coordinatedescentwithscreen.hpp"
 
 %include "../src/FOS/x_fos.hpp"
 
